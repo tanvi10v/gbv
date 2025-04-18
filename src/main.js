@@ -1,264 +1,214 @@
 import './style.css'
 import Phaser from 'phaser';
 
-const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Check if the device is mobile
-
 const config = {
   type: Phaser.AUTO,
-  width: isMobile ? window.innerWidth : (window.innerWidth > 512 ? 512 : window.innerWidth),
-  height: isMobile ? window.innerHeight : (window.innerHeight > 512 ? 512 : window.innerHeight),
+  width: 700,
+  height: 900,
   physics: {
     default: 'arcade',
     arcade: {
       gravity: { y: 0 },
-      debug: false
+      debug: true
     }
   },
-  scene: { preload, create, update }
+  scene: {
+    preload: preload,
+    create: create,
+    update: update
+  }
 };
 
 const game = new Phaser.Game(config);
-let background;
-let birdFrame = 0; // The current frame of the bird
-let birdFrames = ['bird_1', 'bird_2', 'bird_3']; // The frames of the bird
-let bird;
-let birdDirection = 1; // The direction of the bird
-let base;
-let gameStart = false; // Flag to check if the game has started
-let gameOver = false; // Flag to check if the game is over
-let scoreText; // The score text
-let point, hit, wing, die; // Sound effects
+
+let bg1; // Two tiled background layers
+let speed = 2; // Speed of the vertical scroll 
+let cursors; // Cursor keys for player movement
+let keyEnter; // Key for resuming the game
+let gamePause = false; // Flag to check if the game is paused
+
+let calloutText; // Text object for the callout
+let calloutBox;  // Background rectangle for the callout
+
+let social_conflict;      // social_conflict sprite to demonstrate positioning  
+
+let bunny;     // bunny sprite to demonstrate positioning
+let bunnyFrame = 0; // The current frame of the bunny
+let bunnyFrames = ['bunny1_ready', 'bunny1_jump', 'bunny1_stand']; // The frames of the bunny
+
+let obstacles;    // Group of obstacle sprites
+let gameOver = false; // Flag to track game over state
+
 
 function preload() {
-  this.load.image('background', 'assets/background.png');
-  this.load.image('bird_1', 'assets/redbird-downflap.png');
-  this.load.image('bird_2', 'assets/redbird-midflap.png');
-  this.load.image('bird_3', 'assets/redbird-upflap.png');
-  this.load.image('base', 'assets/base.png');
-  this.load.image('piller', 'assets/pipe-red.png');
-  this.load.image('startGame', 'assets/start_game.png');
-  this.load.image('gameOver', 'assets/label_game_over.png');
-  this.load.image('resumeButton', 'assets/button_resume.png');
-  // load sound effects
-  this.load.audio('score', 'assets/point.wav');
-  this.load.audio('hit', 'assets/hit.wav');
-  this.load.audio('die', 'assets/die.wav');
-  this.load.audio('wing', 'assets/wing.wav');
+  //BG
+  this.load.image('background', 'assets/skyBg.png'); // Replace with your image URL
+
+  // InforGraphics
+  this.load.image('social_conflict', 'assets/info-graphics/social_conflict.png');
+  this.load.image('juneville_custody', 'assets/info-graphics/juneville_custody.png');
+  this.load.image('violence_at_school', 'assets/info-graphics/violence_at_school.png');
+
+  // Load the bunny frames
+  this.load.image('bunny1_ready', 'assets/character/bunny1_ready.png');
+  this.load.image('bunny1_stand', 'assets/character/bunny1_stand.png');
+  this.load.image('bunny1_jump', 'assets/character/bunny1_jump.png');
+
+  // Obstacles
+  this.load.image('obstacle', 'assets/obstacles/particle_green.png');
 }
 
 function create() {
-  // this.add.image(400, 300, 'background');
-  background = this.add.tileSprite(0, 0, game.config.width * 2, game.config.height * 2, 'background');
-  background.setOrigin(0, 0); // Set the origin to the top left corner
-  background.setScale(3); // Scale the background to fit the screen
 
-  // Load the sound effects
-  point = this.sound.add('score'); // Load the score sound effect
-  hit = this.sound.add('hit'); // Load the hit sound effect
-  wing = this.sound.add('wing'); // Load the wing sound effect
-  die = this.sound.add('die'); // Load the die sound effect
+  // Create two TileSprites for the background
+  bg1 = this.add.tileSprite(0, 0, config.width, config.height, 'background').setOrigin(0, 0);
 
-  // Add the start game image
-  let startGameImage = this.add.image(game.config.width / 2, game.config.height / 2, 'startGame');
-  startGameImage.setOrigin(0.5, 0.5); // Set the origin to the center
-  startGameImage.setInteractive(); // Make the image interactive
-  startGameImage.on('pointerdown', () => {
-    startGameImage.destroy(); // Destroy the start game image when clicked
-    bird.setVisible(true); // Show the bird
-    gameStart = true; // Set the game start flag to true
+  // Create a social_conflict sprite
+  social_conflict = this.physics.add.sprite(game.config.width / 2, game.config.height / 2 - 300, 'social_conflict').setScale(.2); // Make the player semi-transparent
+  // Make the social_conflict interactive
+  social_conflict.setInteractive();
 
-    /**
-     * Create a score display that is center horizontally
-     * positioned near the top of the screen.
-     * The score is initialized to 0 and is updated
-     * render above other game objects.
-     */
-    scoreText = this.add.text(game.config.width / 2, 50, '0', {
-      fontSize: '32px',
-      fill: '#fff'
-    });
-    scoreText.setOrigin(0.5, 0.5); // Set the origin to the center
-    scoreText.setDepth(2); // Set the depth of the score text to 2
+  // Create a background box for the callout
+  calloutBox = this.add.rectangle(0, 0, 150, 50, 0x000000).setOrigin(0.5, 0.5).setAlpha(0.8).setVisible(false);
 
-    // Create a piller every 2 seconds
-    this.time.addEvent({
-      delay: 2000,
-      callback: () => {
-        if (gameOver) {
-          return; // If the game is over, don't create more pillers
-        }
-        createPiller(); // Call the createPiller function
-      },
-      loop: true
-    });
-  })
-
-  bird = this.physics.add.sprite(game.config.width / 2, game.config.height / 2, 'bird_1'); // Create the bird sprite
-  bird.setVisible(false); // Hide the bird initially
+  // Create a text object for the callout
+  calloutText = this.add.text(0, 0, 'Hello!', {
+    fontFamily: 'Arial',
+    fontSize: '16px',
+    color: '#ffffff',
+    align: 'center',
+    wordWrap: { width: 140 } // Wrap text within the box width
+  }).setOrigin(0.5, 0.5).setVisible(false);
 
 
-  // Load the base
-  let baseImage = this.textures.get('base'); // Get the base texture
-  let baseHeight = baseImage.getSourceImage().height; // Get the height of the base image
-  base = this.add.tileSprite(game.config.width / 2, game.config.height - baseHeight / 2, game.config.width, baseHeight, 'base');
-  this.physics.add.existing(base, true); // Add physics to the base
-  base.setDepth(1); // Set the depth of the base to 1
 
-  // Create a random siz piller
-  const createPiller = () => {
-    let pillerHeight = Phaser.Math.Between(100, 400); // Random height between 100 and 400
-    let gap = 150;
+  bunny = this.physics.add.sprite(config.width / 2, config.height - 300, bunnyFrames[bunnyFrame]).setScale(0.5); // Make the player semi-transparent
+  bunny.setCollideWorldBounds(true); // Prevent the bunny from going out of bounds
 
-    let buttomPiller = this.physics.add.sprite(game.config.width, game.config.height - base.height, 'piller');
-    buttomPiller.displayHeight = pillerHeight; // Set the height of the piller
-    buttomPiller.setOrigin(0.5, 1); // Set the origin to the bottom center
-    buttomPiller.setVelocityX(-200); // Move the piller to the left
+  // Enable cursor keys, including SPACE
+  cursors = this.input.keyboard.createCursorKeys();
 
-    // Crete top piller
-    let topPiller = this.physics.add.sprite(game.config.width, 0, 'piller');
-    topPiller.displayHeight = game.config.height - base.height - pillerHeight - gap; // Set the height of the piller
-    topPiller.setOrigin(0.5, 0); // Set the origin to the top center
-    topPiller.setVelocityX(-200); // Move the piller to the left
-    // apply flip
-    topPiller.setFlipY(true); // Flip the piller vertically
+  keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
-    // Crete helper function - destroy piller
-    const destroyPiller = (piller) => {
-      // check piller right edge less than 0
-      if (piller.getBounds().right < 0) {
-        piller.destroy(); // Destroy the piller
-      }
+  this.physics.add.collider(bunny, social_conflict, () => handleCollision(this, bunny, 'Social Conflict!'), null, this);
+
+  // Listen for pointer down events on the bunny
+  this.input.on('gameobjectdown', (pointer, gameObject) => {
+    if (gameObject === social_conflict) {
+      // Show the callout near the social_conflict
+      showCallout(social_conflict.x, social_conflict.y - 50, 'Social Conflict!');
     }
+  });
 
-    // set the onWorldbounds
-    buttomPiller.body.onWorldBounds = true; // Enable world bounds
-    topPiller.body.onWorldBounds = true; // Enable world bounds
+  // Add a group of random obstacles
+  obstacles = this.physics.add.group();
+  placeRandomObstacles(this, obstacles, 3); // Place 10 random obstacles
 
-    // listen for world bounds and destroy the piller
-    this.physics.world.on('worldbounds', function (body) {
-      if (body.gameObject === buttomPiller) {
-        destroyPiller(buttomPiller); // Call the destroyPiller function
-      }
-      if (body.gameObject === topPiller) {
-        destroyPiller(topPiller); // Call the destroyPiller function
-      }
-    }
-    );
+  // Add collision detection between player and obstacles
+  this.physics.add.collider(bunny, obstacles, handleObstacles, null, this);
 
-    // Add collision detection between the bird and the piller
-    this.physics.add.collider(bird, buttomPiller, hanleCollision, null, this); // Handle collision with the bottom piller
-    this.physics.add.collider(bird, topPiller, hanleCollision, null, this); // Handle collision with the top piller
-  }
 
-  // Handle collision between the bird and the piller
-  const hanleCollision = () => {
-    // play hit sound
-    hit.play(); // Play the hit sound effect
-    // play die sound
-    die.play(); // Play the die sound effect
-    gameOver = true; // Set the game over flag to true
-    bird.setTint(0xff0000); // Set the tint to red
-    bird.setVelocity(0, 0); // Stop the bird
-    bird.body.setGravityY(0); // Stop the gravity
-    this.physics.pause(); // Pause the physics
-
-    // Show the game over image
-    let gameOverImage = this.add.image(game.config.width / 2, game.config.height / 2, 'gameOver');
-    gameOverImage.setOrigin(0.5, 0.5); // Set the origin to the center
-    gameOverImage.setScale(2);
-
-    // Add the resume button
-    let resumeButton = this.add.image(game.config.width / 2, game.config.height - 100, 'resumeButton');
-    resumeButton.setOrigin(0.5, 2); // Set the origin to the center
-    resumeButton.setScale(3); // Scale the button
-    resumeButton.setInteractive(); // Make the button interactive
-
-    resumeButton.on('pointerdown', () => {
-      resumeButton.destroy(); // Destroy the resume button when clicked
-      gameOverImage.destroy(); // Destroy the game over image
-      resumeGame(); // Call the resume game function
-    }
-    );
-    // 
-  }
-
-  // Add collision detection between the bird and the base
-  this.physics.add.collider(bird, base, hanleCollision, null, this); // Handle collision with the base
-
-  bird.body.onWorldBounds = true; // Enable world bounds
-  this.physics.world.on('worldbounds', function (body) {
-    if (body.gameObject === bird) {
-      handleCollision(); // Call the collision handler if the bird goes out of bounds
-    }
-  }
-  );
-
-  const resumeGame = () => {
-    gameStart = false; // Set the game start flag to false
-    gameOver = false; // Set the game over flag to false
-    bird.setActive(false);
-    this.scene.restart(); // Restart the scene
-  }
 }
 
 function update() {
-  if (!gameStart || gameOver) {
+
+  if (gameOver) {
     // If the game hasn't started or is over, don't update the game
     return; // Don't update if the game hasn't started
   }
-  // Update the background position to create a scrolling effect
-  background.tilePositionX += 0.5; // Move the background to the right by 0.5 pixels
 
-  if (bird.active) {
-    // apply gravity-like effect
-    bird.body.setVelocityY(bird.body.velocity.y + 10); // Set the vertical velocity of the bird
-    // prevent bird from falling below the base
-    let baseTop = game.config.height - base.height; // Get the top position of the base
-    if (bird.y + bird.height / 2 > baseTop) {
-      bird.y = baseTop - bird.height / 2; // Set the bird's position to the top of the base
-      bird.body.setVelocityY(0); // Stop the bird's vertical velocity
-    }
 
-    // Go up when the space key is pressed
-    const spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    if (spaceKey.isDown || this.input.activePointer.isDown) {
-      // play wing sound
-      wing.play(); // Play the wing sound effect
-      bird.body.setVelocityY(-200); // Move the bird up
-      birdDirection = -1; // Set the direction to up
-    }
+  // Scroll both backgrounds vertically
+  bg1.tilePositionY += speed;
 
-    //Animate the bird by changing the frame every 10 frames
-    birdFrame += 0.1; // Increase the frame counter
-    if (birdFrame >= birdFrames.length) {
-      birdFrame = 0;
-    }
-    bird.setTexture(birdFrames[Math.floor(birdFrame)]); // Change the bird frame
+  // Reset positions when they move out of view
+  if (bg1.tilePositionY >= config.height) bg1.tilePositionY = -config.height;
+
+  // Move the bunny with arrow keys
+  if (cursors.left.isDown) {
+    bunny.setVelocityX(-160);
+  } else if (cursors.right.isDown) {
+    bunny.setVelocityX(160);
+  } else {
+    bunny.setVelocityX(0);
   }
 
-  // Retreive all active colliders and iterate thrgough this collider
-  this.physics.world.colliders.getActive().forEach((collider) => {
-    // if the first object is the bird and the second object is the piller
-    if (collider.object1 === bird && collider.object2.texture.key === 'piller') {
-      let piller = collider.object2; // Get the piller
-      // if the bird pass the piller and piller is not scored make the piller scored
-      if (piller.x + piller.width / 2 < bird.x - bird.width / 2 && !piller.scored) {
-        piller.scored = true; // Set the piller as scored
+  if (cursors.up.isDown) {
+    bunny.setVelocityY(-160);
+  } else if (cursors.down.isDown) {
+    bunny.setVelocityY(160);
+  } else {
+    bunny.setVelocityY(0);
+  }
 
-        // check if both the piller scored
-        let pillerPair = this.physics.world.colliders.getActive().find((collider) => {
-          return collider.object2 !== piller &&
-            collider.object2.texture.key === 'piller' &&
-            Math.abs(collider.object2.x - piller.x) < 10; // Check if the piller is scored
-        });
+  // Resume the game when SPACE is pressed
+  if (keyEnter.isDown && gamePause) {
+    gamePause = false;
+    this.scene.restart();
+    this.physics.resume();
+    hideCallout();
+  }
 
-        if (pillerPair && !pillerPair.object2.scored) {
-          // play the score sound
-          point.play(); // Play the score sound effect
-          pillerPair.object2.scored = true; // Set the piller as scored
-          scoreText.setText(parseInt(scoreText.text) + 1); // Increment the score
-        }
-      }
-    }
-  });
+  //Animate the bunny by changing the frame every 10 frames
+  bunnyFrame += 0.1; // Increase the frame counter
+  if (bunnyFrame >= bunnyFrames.length) {
+    bunnyFrame = 0;
+  }
+  bunny.setTexture(bunnyFrames[Math.floor(bunnyFrame)]); // Change the bunny frame
 }
+
+function placeRandomObstacles(scene, group, count) {
+  for (let i = 0; i < count; i++) {
+    const x = Phaser.Math.Between(50, config.width - 50); // Random x position
+    const y = Phaser.Math.Between(50, config.height - 50); // Random y position
+    const obstacle = group.create(x, y, 'obstacle').setScale(1);
+    obstacle.setImmovable(true); // Make obstacles immovable
+  }
+}
+
+function handleObstacles(player, obstacle) {
+  // Handle game over logic
+  gameOver = true;
+
+  // Stop player movement
+  player.setVelocity(0, 0);
+
+  // Display a game over message
+  const centerX = config.width / 2;
+  const centerY = config.height / 2;
+  this.add.text(centerX, centerY, 'Game Over\nPress SPACE to Restart', {
+    fontFamily: 'Arial',
+    fontSize: '32px',
+    color: '#ffffff',
+    align: 'center'
+  }).setOrigin(0.5, 0.5);
+
+
+  // Listen for the SPACE key to restart the game
+  this.input.keyboard.once('keydown-SPACE', () => {
+    gameOver = false; // Reset the game over flag
+    this.scene.restart(); // Restart the scene
+  });
+
+
+}
+
+function showCallout(x, y, message) {
+  // Update the callout position and text
+  calloutBox.setPosition(x, y).setVisible(true);
+  calloutText.setPosition(x, y).setText(message).setVisible(true);
+}
+
+function handleCollision(instance, player, message) {
+  instance.physics.pause();
+  gamePause = true;
+  // Show the callout near the player
+  showCallout(player.x, player.y - 100, message);
+}
+
+function hideCallout() {
+  // Hide the callout
+  calloutBox.setVisible(false);
+  calloutText.setVisible(false);
+}
+
