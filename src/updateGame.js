@@ -1,4 +1,5 @@
 import { hideCallout } from './callout.js';
+import { resumeGame, restartGame} from './controller.js';
 export const updateGame = (instance, settings) => {
 
     const bg1 = settings.bg1; // Get the background layer
@@ -46,6 +47,16 @@ export const updateGame = (instance, settings) => {
         instance.physics.resume();
         hideCallout(calloutBox, calloutText); // Hide the callout
     }
+
+    // Global mouse click detection
+    instance.input.on('pointerdown', (pointer) => {
+        if (settings.gamePause) {
+            resumeGame(instance, settings); // Pause the game
+        }
+        if (settings.gameOver) {
+            restartGame(instance, settings); // Restart the game
+        }
+    });
 
     //Animate the bunny by changing the frame every 10 frames
     settings.bunnyFrame += 0.1; // Increase the frame counter

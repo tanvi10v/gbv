@@ -1,3 +1,4 @@
+import { restartGame } from "./controller";
 
 export const createObstacles = (instance, settings) => {
     const bunny = settings.bunny;
@@ -45,7 +46,6 @@ function handleCollision(instance, settings) {
     }).setOrigin(0.5, 0.5);
     // Listen for the SPACE key to restart the game
     instance.input.keyboard.once('keydown-SPACE', () => {
-        settings.gameOver = false; // Reset the game over flag
-        instance.scene.restart(); // Restart the scene
+        restartGame(instance, settings); // Restart the game
     });
 }

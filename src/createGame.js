@@ -5,10 +5,7 @@ import { createObstacles } from './obstacles.js'; // Import the obstacles functi
 import { score } from './score.js';
 export const createGame = (instance, settings) => {
     const config = settings.game.config;
-    // Global mouse click detection
-    instance.input.on('pointerdown', (pointer) => {
-        console.log(`Mouse clicked at (${pointer.x}, ${pointer.y})`);
-    });
+   
 
     // Set background
     settings.bg1 = instance.add.tileSprite(0, 0, config.width, config.height, 'background').setOrigin(0, 0);
