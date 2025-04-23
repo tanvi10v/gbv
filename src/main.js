@@ -7,9 +7,9 @@ import { create as createStartGameScreen} from './startGame/create.js'; // Impor
 import { update as updateMainGame } from './mainGame/update.js';
 
 // Start Screen Scene
-class StartScreen extends Phaser.Scene {
+class StartGame extends Phaser.Scene {
   constructor() {
-    super('StartScreen');
+    super('StartGame');
     this.bg = null; // Background image
     this.welcomeMsg = null; // Welcome message text
     this.startButton = null; // Start button
@@ -61,7 +61,7 @@ const config = {
       debug: false
     }
   },
-  scene: [StartScreen, MainGame] // Define multiple scenes
+  scene: [StartGame, MainGame] // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
