@@ -30,22 +30,7 @@ function placeRandomObstacles(scene, group, count, settings) {
 }
 
 function handleCollision(instance, settings) {
-    const bunny = settings.bunny; // Get the bunny sprite
     // Handle game over logic
     settings.gameOver = true;
-    // Stop player movement
-    bunny.setVelocity(0, 0);
-    // Display a game over message
-    const centerX = settings.game.config.width / 2;
-    const centerY = settings.game.config.height / 2;
-    instance.add.text(centerX, centerY, 'Game Over\nPress SPACE to Restart', {
-        fontFamily: 'Arial',
-        fontSize: '32px',
-        color: '#ffffff',
-        align: 'center'
-    }).setOrigin(0.5, 0.5);
-    // Listen for the SPACE key to restart the game
-    instance.input.keyboard.once('keydown-SPACE', () => {
-        restartGame(instance, settings); // Restart the game
-    });
+    instance.scene.start('GameOver'); // Transition to the Game Over scene
 }

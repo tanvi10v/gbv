@@ -49,6 +49,45 @@ class MainGame extends Phaser.Scene {
   }
 }
 
+// Define the Game Over Scene
+class GameOver extends Phaser.Scene {
+  constructor() {
+    super('GameOver'); // Key for this scene
+  }
+
+  preload() {
+    // Load assets for the game over screen
+    this.load.image('gameOverBg', 'assets/startBg.png'); // Background image
+    this.load.image('restartButton', 'assets/startBtn.png'); // Button image
+  }
+
+  create() {
+    // Add the background
+    this.add.image(0, 0, 'gameOverBg').setOrigin(0, 0);
+
+    // Add the "Game Over" text
+    this.add.text(700 / 2, 900 / 2 - 300, 'Game Over!', {
+      fontFamily: 'Arial',
+      fontSize: '48px',
+      color: '#ff0000'
+    }).setOrigin(0.5, 0.5);
+
+    // Add the "Restart Game" button
+    const restartButton = this.add.sprite(700 / 2, 900 / 2, 'restartButton').setScale(2).setInteractive();
+    restartButton.on('pointerdown', () => {
+      gameSettings.gameOver = false; // Reset the game over flag
+      this.scene.start('StartGame'); // Restart the game
+    });
+
+    // Add text on top of the button
+    this.add.text(700 / 2, 900 / 2 -100, 'Restart Game', {
+      fontFamily: 'Arial',
+      fontSize: '24px',
+      color: '#000000'
+    }).setOrigin(0.5, 0.5);
+
+  }
+}
 
 const config = {
   type: Phaser.AUTO,
@@ -61,7 +100,7 @@ const config = {
       debug: false
     }
   },
-  scene: [StartGame, MainGame] // Define multiple scenes
+  scene: [StartGame, MainGame, GameOver] // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
