@@ -3,7 +3,7 @@ import { character } from './character.js';
 import { createInfoGraphics } from './infoGraphics.js'; // Import the info graphics function
 import { createObstacles } from './obstacles.js'; // Import the obstacles function
 import { score } from './score.js';
-export const createGame = (instance, settings) => {
+export const create = (instance, settings) => {
     const config = settings.game.config;
    
 

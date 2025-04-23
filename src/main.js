@@ -1,8 +1,54 @@
 import './style.css'
 import Phaser from 'phaser';
-import { preloadAssets } from './preloadAssets.js'; // Import the preload function
-import { createGame } from './createGame.js'; // Import the create function
-import { updateGame } from './updateGame.js';
+import { preloadAssets as preloadAssetsForMainGame } from './mainGame/preloadAssets.js'; // Import the preload function
+import { preloadAssets as preloadAssetsForStartGameScreen } from './startGame/preloadAssets.js'; // Import the preload function
+import { create as createMainGame} from './mainGame/create.js'; // Import the create function
+import { create as createStartGameScreen} from './startGame/create.js'; // Import the create function
+import { update as updateMainGame } from './mainGame/update.js';
+
+// Start Screen Scene
+class StartScreen extends Phaser.Scene {
+  constructor() {
+    super('StartScreen');
+    this.bg = null; // Background image
+    this.welcomeMsg = null; // Welcome message text
+    this.startButton = null; // Start button
+    this.startButtonText = null; // Start button text
+  }
+
+  preload() {
+    preloadAssetsForStartGameScreen(this); // Preload assets using the imported function
+  }
+
+  create() {
+    createStartGameScreen(this);
+  }
+}
+
+// Define the Main Game Scene
+class MainGame extends Phaser.Scene {
+  constructor() {
+    super('MainGame'); // Key for this scene
+  }
+
+  preload() {
+    preloadAssetsForMainGame(this); // Preload assets using the imported function
+  }
+
+  create() {
+    createMainGame(this, gameSettings); // Create the game using the imported function
+
+    // Enable cursor keys, including SPACE
+    gameSettings.cursors = this.input.keyboard.createCursorKeys();
+    gameSettings.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+
+  }
+
+  update() {
+    updateMainGame(this, gameSettings); // Update the game using the imported function
+  }
+}
+
 
 const config = {
   type: Phaser.AUTO,
@@ -15,15 +61,12 @@ const config = {
       debug: false
     }
   },
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
-  }
+  scene: [StartScreen, MainGame] // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
 
+// Game settings object
 let gameSettings = {
   game: game,
   bg1: null,
@@ -42,22 +85,8 @@ let gameSettings = {
   gameOver: false
 }
 
-function preload() {
-  preloadAssets(this); // Preload assets using the imported function
-}
 
-function create() {
-  createGame(this, gameSettings); // Create the game using the imported function
 
-  // Enable cursor keys, including SPACE
-  gameSettings.cursors = this.input.keyboard.createCursorKeys();
-  gameSettings.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
-}
-
-function update() {
-  updateGame(this, gameSettings); // Update the game using the imported function
-}
 
 
 

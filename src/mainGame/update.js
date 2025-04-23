@@ -1,6 +1,6 @@
 import { hideCallout } from './callout.js';
 import { resumeGame, restartGame} from './controller.js';
-export const updateGame = (instance, settings) => {
+export const update = (instance, settings) => {
 
     const bg1 = settings.bg1; // Get the background layer
     const calloutBox = settings.calloutBox; // Get the callout box
@@ -15,7 +15,6 @@ export const updateGame = (instance, settings) => {
         // If the game hasn't started or is over, don't update the game
         return; // Don't update if the game hasn't started
     }
-
 
     // Scroll both backgrounds vertically
     bg1.tilePositionY += settings.speed;
