@@ -18,4 +18,6 @@ export const preloadAssets = (instance) => {
     instance.load.image('bomb', 'assets/obstacles/bomb.png');
     instance.load.image('skull', 'assets/obstacles/skull.png');
     instance.load.image('timeBombs', 'assets/obstacles/timeBombs.png');
+    
+    instance.load.image('scoreBoard', 'assets/score.png');
 }
