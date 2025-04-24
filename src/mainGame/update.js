@@ -7,7 +7,7 @@ export const update = (instance, settings) => {
     const calloutText = settings.calloutText; // Get the callout text
     const bunny = settings.bunny; // Get the bunny sprite
     let gamePause = settings.gamePause; // Get the game pause state
-    const infographic = settings.infographic; // Get the infographic
+    const reward = settings.reward; // Get the reward
     const keyEnter = settings.keyEnter; // Get the enter key
     const cursors = settings.cursors; // Get the cursor keys
 
@@ -42,7 +42,7 @@ export const update = (instance, settings) => {
     // Resume the game when SPACE is pressed
     if (keyEnter.isDown && settings.gamePause) {
         gamePause = false;
-        infographic.destroy();
+        reward.destroy();
         instance.physics.resume();
         hideCallout(calloutBox, calloutText); // Hide the callout
     }

@@ -2,10 +2,9 @@ export const preloadAssets = (instance) => {
     //BG
     instance.load.image('background', 'assets/path.png'); // Replace with your image URL
 
-    // InforGraphics
-    instance.load.image('social_conflict', 'assets/info-graphics/social_conflict.png');
-    instance.load.image('juneville_custody', 'assets/info-graphics/juneville_custody.png');
-    instance.load.image('violence_at_school', 'assets/info-graphics/violence_at_school.png');
+
+    instance.load.image('gold', 'assets/coins/gold_1.png');
+    instance.load.image('bronze', 'assets/coins/bronze_1.png');
 
     // Load the bunny frames
     instance.load.image('bunny1_ready', 'assets/character/bunny1_ready.png');

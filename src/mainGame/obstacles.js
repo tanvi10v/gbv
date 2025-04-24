@@ -13,7 +13,7 @@ export const createObstacles = (instance, settings) => {
             if (settings.gameOver) {
                 return; // If the game is over, don't create more warning signs
             }
-            const obstacleType = Phaser.Math.Between(0, 5); // Randomly select an infographic type
+            const obstacleType = Phaser.Math.Between(0, 5); // Randomly select an reward type
             let obstacleKey;
             switch (obstacleType) {
                 case 0:
@@ -40,9 +40,9 @@ export const createObstacles = (instance, settings) => {
             }
             const x = Phaser.Math.Between(100, settings.game.config.width - 100); // Random x position
             //const y = Phaser.Math.Between(0, 0); // Random y position
-            settings.obstacle = obstacles.create(x, 100, obstacleKey).setDisplaySize(100,100); // Create the infographic
-            settings.obstacle.setVelocityY(200); // Set the velocity of the infographic
-            settings.obstacle.setInteractive(); // Make the infographic interactive
+            settings.obstacle = obstacles.create(x, 100, obstacleKey).setDisplaySize(100,100); // Create the reward
+            settings.obstacle.setVelocityY(200); // Set the velocity of the reward
+            settings.obstacle.setInteractive(); // Make the reward interactive
 
 
         },

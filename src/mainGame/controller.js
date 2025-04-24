@@ -1,7 +1,7 @@
 import { hideCallout } from "./callout";
 export const resumeGame = (instance, settings) => {
     settings.gamePause = false;
-    settings.infographic.destroy();
+    settings.reward.destroy();
     instance.physics.resume();
     hideCallout(settings.calloutBox, settings.calloutText); // Hide the callout
 }

@@ -92,7 +92,7 @@ let gameSettings = {
   scoreText: 0,
   calloutText: null,
   calloutBox: null,
-  infographic: null,
+  reward: null,
   bunny: null,
   bunnyFrame: 0,
   bunnyFrames: ['bunny1_ready', 'bunny1_jump', 'bunny1_stand'],

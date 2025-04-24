@@ -1,7 +1,7 @@
 import { fitBackground } from '../utils.js';
 import { createCallout } from './callout.js';
 import { character } from './character.js';
-import { createInfoGraphics } from './infoGraphics.js'; // Import the info graphics function
+import { createrewards } from './rewards.js'; // Import the info graphics function
 import { createObstacles } from './obstacles.js'; // Import the obstacles function
 import { score } from './score.js';
 export const create = (instance, settings) => {
@@ -14,8 +14,8 @@ export const create = (instance, settings) => {
     
     createCallout(instance, settings); // Create the callout
     character(instance, settings); // Create the character
-    createInfoGraphics(instance, settings); // Create the infographics
-    createObstacles(instance, settings); // Create the infographics
+    createrewards(instance, settings); // Create the rewards
+    createObstacles(instance, settings); // Create the rewards
     score(instance, settings); // Create the score text
 }
 
