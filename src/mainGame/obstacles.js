@@ -5,7 +5,7 @@ export const createObstacles = (instance, settings) => {
     // Add a group of random obstacles
     let obstacles = instance.physics.add.group();
     // Add collision detection between player and obstacles
-    //instance.physics.add.collider(bunny, obstacles, () => handleCollision(instance, settings), null, instance);
+    instance.physics.add.collider(bunny, obstacles, () => handleCollision(instance, settings), null, instance);
     // Create onsctacles randomly every 5 seconds
     instance.time.addEvent({
         delay: 5000,
