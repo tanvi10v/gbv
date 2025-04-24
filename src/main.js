@@ -55,9 +55,6 @@ class MainGame extends Phaser.Scene {
 class GameOver extends Phaser.Scene {
   constructor() {
     super('GameOver'); // Key for this scene
-    this.bg = null; // Background image
-    this.gameOverMsg = null; // Game Over message text
-    this.restartButton = null; // restart button
   }
 
   preload() {

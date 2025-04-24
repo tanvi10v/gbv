@@ -1,25 +1,22 @@
+
+import { fitBackground } from "../utils";
+
+import { textStyle } from "../constants.js";
 export const create = (instance, settings) => {
     // Add the background
     instance.bg = instance.add.image(0, 0, 'gameOverBg').setOrigin(0, 0);
+    fitBackground(instance, instance.bg); // Fit the background to the screen
+    instance.bg.setScrollFactor(0);
 
     // Add the title text
-    instance.gameOverMsg = instance.add.text(700 / 2, 900 / 2 - 300, 'Game Over!', {
-        fontFamily: 'Arial',
-        fontSize: '48px',
-        color: '#ff0000'
-    }).setOrigin(0.5, 0.5);
+    instance.add.text(settings.game.config.width / 2 - 80, settings.game.config.height / 2 - 200, 'Game Over', textStyle).setOrigin(0, 0).setDepth(1);
+
+    instance.add.sprite(settings.game.config.width / 2, settings.game.config.height / 2, 'infoBoardGameOver').setScale(0.5).setOrigin(.3, .8);
 
     // Add the "Start Game" button
-    instance.restartButton = instance.add.sprite(700 / 2, 900 / 2, 'restartButton').setScale(2).setInteractive();
+    instance.restartButton = instance.add.sprite(settings.game.config.width / 2, settings.game.config.height / 2, 'restartButton').setScale(0.4).setOrigin(0, 2).setInteractive();
     instance.restartButton.on('pointerdown', () => {
         settings.gameOver = false; // Reset the game over flag
         instance.scene.start('StartGame'); // Restart the game
     });
-
-    // Add text on top of the button
-    instance.add.text(700 / 2, 900 / 2 - 100, 'Restart Game', {
-        fontFamily: 'Arial',
-        fontSize: '24px',
-        color: '#000000'
-    }).setOrigin(0.5, 0.5);
 }
