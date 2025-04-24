@@ -12,10 +12,6 @@ import { update as updateMainGame } from './mainGame/update.js';
 class StartGame extends Phaser.Scene {
   constructor() {
     super('StartGame');
-    this.bg = null; // Background image
-    this.welcomeMsg = null; // Welcome message text
-    this.startButton = null; // Start button
-    this.startButtonText = null; // Start button text
   }
 
   preload() {

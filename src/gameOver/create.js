@@ -19,4 +19,17 @@ export const create = (instance, settings) => {
         settings.gameOver = false; // Reset the game over flag
         instance.scene.start('StartGame'); // Restart the game
     });
+    // Add the "Start Game" butto0
+    instance.exitButton = instance.add.sprite(settings.game.config.width / 2, settings.game.config.height / 2, 'exitButton').setScale(0.3).setOrigin(-.2, 1).setInteractive();
+    instance.exitButton.on('pointerdown', () => {
+        // Confirm with the user before closing
+        if (confirm('Are you sure you want to exit?')) {
+            try {
+                window.location.href = '/'; // Redirect to the homepage
+            } catch (error) {
+                console.error('Failed to close the window:', error);
+                alert('Unable to close the window. Please close it manually.');
+            }
+        }
+    });
 }
