@@ -1,6 +1,6 @@
 export const preloadAssets = (instance) => {
     //BG
-    instance.load.image('background', 'assets/skyBg.png'); // Replace with your image URL
+    instance.load.image('background', 'assets/path.png'); // Replace with your image URL
 
     // InforGraphics
     instance.load.image('social_conflict', 'assets/info-graphics/social_conflict.png');

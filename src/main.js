@@ -23,7 +23,7 @@ class StartGame extends Phaser.Scene {
   }
 
   create() {
-    createStartGameScreen(this);
+    createStartGameScreen(this, gameSettings); // Create the start game screen using the imported function
   }
 }
 
@@ -71,8 +71,11 @@ class GameOver extends Phaser.Scene {
 
 const config = {
   type: Phaser.AUTO,
-  width: 700,
-  height: 900,
+  scale: {
+    mode: Phaser.Scale.RESIZE,
+    width: 740,
+    height: window.innerHeight
+  },
   physics: {
     default: 'arcade',
     arcade: {
