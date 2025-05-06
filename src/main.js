@@ -1,19 +1,19 @@
-import './style.css'
-import Phaser from 'phaser';
-import { preloadAssets as preloadAssetsForCantTalk } from './cantTalk/preloadAssets.js'; // Import the preload function
-import { preloadAssets as preloadAssetsForMainGame } from './mainGame/preloadAssets.js'; // Import the preload function
-import { preloadAssets as preloadAssetsForGameOver } from './gameOver/preloadAssets.js'; // Import the preload function
-import { preloadAssets as preloadAssetsForStartGameScreen } from './startGame/preloadAssets.js'; // Import the preload function
-import { create as createCantTalk } from './cantTalk/create.js'; // Import the create function
-import { create as createMainGame } from './mainGame/create.js'; // Import the create function
-import { create as createStartGameScreen } from './startGame/create.js'; // Import the create function
-import { create as createGameOverScreen } from './gameOver/create.js'; // Import the create function
-import { update as updateMainGame } from './mainGame/update.js';
+import "./style.css";
+import Phaser from "phaser";
+import { preloadAssets as preloadAssetsForCantTalk } from "./cantTalk/preloadAssets.js"; // Import the preload function
+import { preloadAssets as preloadAssetsForMainGame } from "./mainGame/preloadAssets.js"; // Import the preload function
+import { preloadAssets as preloadAssetsForGameOver } from "./gameOver/preloadAssets.js"; // Import the preload function
+import { preloadAssets as preloadAssetsForStartGameScreen } from "./startGame/preloadAssets.js"; // Import the preload function
+import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
+import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
+import { create as createStartGameScreen } from "./startGame/create.js"; // Import the create function
+import { create as createGameOverScreen } from "./gameOver/create.js"; // Import the create function
+import { update as updateMainGame } from "./mainGame/update.js";
 
 // Start Screen Scene
 class StartGame extends Phaser.Scene {
   constructor() {
-    super('StartGame');
+    super("StartGame");
   }
 
   preload() {
@@ -28,7 +28,7 @@ class StartGame extends Phaser.Scene {
 // Define the Main Game Scene
 class MainGame extends Phaser.Scene {
   constructor() {
-    super('MainGame'); // Key for this scene
+    super("MainGame"); // Key for this scene
   }
 
   preload() {
@@ -40,8 +40,9 @@ class MainGame extends Phaser.Scene {
 
     // Enable cursor keys, including SPACE
     gameSettings.cursors = this.input.keyboard.createCursorKeys();
-    gameSettings.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
+    gameSettings.keyEnter = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.ENTER
+    );
   }
 
   update() {
@@ -51,7 +52,7 @@ class MainGame extends Phaser.Scene {
 
 class CantTalk extends Phaser.Scene {
   constructor() {
-    super('CantTalk'); // Key for this scene
+    super("CantTalk"); // Key for this scene
   }
 
   preload() {
@@ -64,7 +65,6 @@ class CantTalk extends Phaser.Scene {
     // // Enable cursor keys, including SPACE
     // gameSettings.cursors = this.input.keyboard.createCursorKeys();
     // gameSettings.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
   }
 
   update() {
@@ -75,7 +75,7 @@ class CantTalk extends Phaser.Scene {
 // Define the Game Over Scene
 class GameOver extends Phaser.Scene {
   constructor() {
-    super('GameOver'); // Key for this scene
+    super("GameOver"); // Key for this scene
   }
 
   preload() {
@@ -95,16 +95,16 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   },
   physics: {
-    default: 'arcade',
+    default: "arcade",
     arcade: {
       gravity: { y: 0 },
-      debug: false
-    }
+      debug: false,
+    },
   },
-  scene: [StartGame, MainGame, GameOver, CantTalk] // Define multiple scenes
+  scene: [StartGame, MainGame, CantTalk, GameOver], // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
@@ -112,9 +112,9 @@ const game = new Phaser.Game(config);
 // Game settings object
 let gameSettings = {
   game: game,
-  supportiveButton:null,
-  UnSupportiveButton:null,
-  qBoard:null,
+  supportiveButton: null,
+  UnSupportiveButton: null,
+  qBoard: null,
   bg1: null,
   speed: 2,
   cursors: null,
@@ -126,19 +126,7 @@ let gameSettings = {
   reward: null,
   bird: null,
   birdFrame: 0,
-  birdFrames: ['bird_ready', 'bird_jump', 'bird_stand'],
+  birdFrames: ["bird_ready", "bird_jump", "bird_stand"],
   obstacles: null,
-  gameOver: false
-}
-
-
-
-
-
-
-
-
-
-
-
-
+  gameOver: false,
+};

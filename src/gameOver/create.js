@@ -9,16 +9,16 @@ export const create = (instance, settings) => {
 
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
-  // Add the title text
-  instance.add
-    .text(width - 0.8 * width, height - 0.2 * height, "Game Over", textStyle)
-    .setDepth(1);
 
-  instance.add.sprite(width, height, "infoBoardGameOver").setScale(0.5);
+  instance.add
+    .sprite(width - 50, height - 200, "gameOverButton")
+    .setScale(0.3)
+    .setDepth(1)
+    .setOrigin(0, 0);
 
   // Add the "Start Game" button
   instance.restartButton = instance.add
-    .sprite(width - 0.1 * width, height  , "restartButton")
+    .sprite(width , height - 10 , "restartButton")
     .setScale(0.3)
     .setInteractive();
 
@@ -28,11 +28,8 @@ export const create = (instance, settings) => {
   });
   // Add the "Start Game" butto0
   instance.exitButton = instance.add
-    .sprite(
-      width - 0.1 * width, height + 0.2 * height,
-      "exitButton"
-    )
-    .setScale(0.3)
+    .sprite(width, height + 50, "exitButton")
+    .setScale(0.2)
     .setInteractive();
   instance.exitButton.on("pointerdown", () => {
     // Confirm with the user before closing
