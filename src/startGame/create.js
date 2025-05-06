@@ -12,12 +12,21 @@ export const create = (instance, settings) => {
 
   // Add the "Start Game" button
   instance.startButton = instance.add
-    .sprite(width - 0.1 * width, height , "startButton")
+    .sprite(width, height - 100, "startButton")
     .setScale(0.3)
+    .setInteractive();
+
+  // Add the "Start Game" button
+  instance.howToPlayButton = instance.add
+    .sprite(width, height - 10, "howToPlayButton")
+    .setScale(0.2)
     .setInteractive();
 
   instance.startButton.on("pointerdown", () => {
     instance.scene.start("MainGame"); // Transition to the main game scene
   });
-  
+
+  instance.howToPlayButton.on("pointerdown", () => {
+    instance.scene.start("HowToPlay"); // Transition to the main game scene
+  });
 };

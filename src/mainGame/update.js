@@ -40,14 +40,6 @@ export const update = (instance, settings) => {
     bird.setVelocityY(0);
   }
 
-  // Resume the game when SPACE is pressed
-  if (keyEnter.isDown && settings.gamePause) {
-    gamePause = false;
-    reward.destroy();
-    instance.physics.resume();
-    hideCallout(calloutBox, calloutText); // Hide the callout
-  }
-
   // Global mouse click detection
   instance.input.on("pointerdown", (pointer) => {
     if (settings.gamePause) {
