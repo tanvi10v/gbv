@@ -3,78 +3,93 @@ import { textStyle } from "../constants.js";
 import { showAlertBox } from "../showAlertBox.js";
 export const create = (instance, settings) => {
   // Set background
-  instance.qBoard = instance.add.image(0, 0, "questionBoard").setOrigin(0, 0);
-  fitBackground(instance, instance.qBoard); // Fit the background to the screen
-  instance.qBoard.setScrollFactor(0);
+  instance.cantTalkBg = instance.add.image(0, 0, "cantTalkBg").setOrigin(0, 0);
+  fitBackground(instance, instance.cantTalkBg); // Fit the background to the screen
+  instance.cantTalkBg.setScrollFactor(0);
 
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
-  // Add the title text
+
+  const scenarioText = `
+  When your friend says, 
+
+  "I feel like I can't talk to 
+  anyone anymore."
+`;
+
   instance.add
-    .text(
-      width - 0.8 * width,
-      height - 0.2 * height,
-      "When your friend says, `I feel like I can't talk to anyone anymore.`",
-      {
-        ...textStyle,
-        fontSize: "14px",
-        shadow: "none",
-        color: "#000",
-        strokeThickness: 0,
-      }
-    )
+    .text(width, height - 230, scenarioText, {
+      fontFamily: "Cutive",
+      fontWeight: "100",
+      fontStyle: "normal",
+      fontSize: "14px",
+      color: "#333333",
+      align: "center",
+      wordWrap: { width: 300 },
+    })
+    .setOrigin(0.5, 0)
     .setDepth(1);
 
   instance.add
-    .text(width - 0.8 * width, height - 30, "What will you say? (Pick One)", {
-      ...textStyle,
+    .sprite(width, height - 280, "choiceBoard")
+    .setDisplaySize(350, 300)
+    .setInteractive()
+    .setOrigin(0.5, 0);
+
+  const actionText = ` 
+  What will you say? (Pick One)`;
+
+  instance.add
+    .text(width, height - 100, actionText, {
+      fontFamily: "Cutive",
+      fontWeight: "100",
+      fontStyle: "normal",
       fontSize: "14px",
-      shadow: "none",
-      color: "#000",
-      strokeThickness: 0,
+      color: "#333333",
+      align: "center",
+      wordWrap: { width: 300 },
+    })
+    .setOrigin(0.5, 0);
+
+  const supportiveText = `That's tough. Do you want to talk about it?`;
+
+  instance.add
+    .text(20, height + 90, supportiveText, {
+      fontFamily: "Cutive",
+      fontWeight: "100",
+      fontStyle: "normal",
+      fontSize: "14px",
+      color: "#333333",
+      align: "center",
+      wordWrap: { width: 400 },
     })
     .setDepth(1);
 
-  instance.add
-    .text(
-      width - 180,
-      height + 25,
-      "That sounds tough. \n Do you want to talk \nabout it?",
-      {
-        ...textStyle,
-        fontSize: "14px",
-        shadow: "none",
-        color: "#000",
-        strokeThickness: 0,
-      }
-    )
-    .setDepth(1);
   // Add the "Supportive" button
   instance.supportiveButton = instance.add
-    .sprite(width - 0.1 * width, height + 0.1 * height, "supportiveBtn")
-    .setScale(4)
+    .sprite(width, height + 100, "supportiveBtn")
+    .setDisplaySize(400, 50)
     .setInteractive();
 
+  const unSupportiveText = `You're overreacting. It can't be that bad.`;
+
   instance.add
-    .text(
-      width - 170,
-      height + 120,
-      "You're overreacting. \nIt can't be that bad.",
-      {
-        ...textStyle,
-        fontSize: "14px",
-        shadow: "none",
-        color: "#000",
-        strokeThickness: 0,
-      }
-    )
+    .text(20, height + 150, unSupportiveText, {
+      fontFamily: "Cutive",
+      fontWeight: "100",
+      fontStyle: "normal",
+      fontSize: "14px",
+      color: "#333333",
+      align: "center",
+      wordWrap: { width: 400 },
+    })
     .setDepth(1);
 
   // Add the "UnSupportive" button
 
   instance.unSupportiveButton = instance.add
-    .sprite(width - 0.1 * width, height + 150, "unsupportiveBtn")
-    .setScale(4)
+    .sprite(width, height + 160, "unsupportiveBtn")
+    .setDisplaySize(400, 50)
     .setInteractive();
 
   instance.supportiveButton.on("pointerdown", () => {

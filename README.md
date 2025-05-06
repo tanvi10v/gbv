@@ -16,12 +16,12 @@ score boarding - Done
 
 
 
-collision not detetcting
+collision not detetcting - Later
 
 
 
 
-thumb touch auto
+thumb touch auto - Later
 
 
 Title of the game
