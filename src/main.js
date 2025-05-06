@@ -4,7 +4,7 @@ import { preloadAssets as preloadAssetsForCantTalk } from "./cantTalk/preloadAss
 import { preloadAssets as preloadAssetsForMainGame } from "./mainGame/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForGameOver } from "./gameOver/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForStartGameScreen } from "./startGame/preloadAssets.js"; // Import the preload function
-import { preloadAssets as preloadAssetsForHowToPlayScreen } from "./HowToPlay/preloadAssets.js"; // Import the preload function
+import { preloadAssets as preloadAssetsForHowToPlayScreen } from "./howToPlay/preloadAssets.js"; // Import the preload function
 import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
 import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
 import { create as createHowToPlayScreen } from "./HowToPlay/create.js"; // Import the create function
@@ -121,7 +121,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [HowToPlay,StartGame, MainGame, CantTalk, GameOver], // Define multiple scenes
+  scene: [StartGame, MainGame, CantTalk, GameOver, HowToPlay], // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
