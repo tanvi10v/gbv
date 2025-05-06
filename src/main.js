@@ -65,8 +65,9 @@ class GameOver extends Phaser.Scene {
 const config = {
   type: Phaser.AUTO,
   scale: {
-    mode: Phaser.Scale.RESIZE,
-    width: 740,
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: window.innerWidth,
     height: window.innerHeight
   },
   physics: {
