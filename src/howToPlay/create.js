@@ -16,11 +16,11 @@ export const create = (instance, settings) => {
   Collect rewards, avoid obstacles, and reach the target score to unlock the Decision-Making Room, where you'll face real-life OGBV scenarios.
   
   Controls:
-  - Use Arrow Keys to Move
+  - Touch & Drag to Move
   
   Gameplay:
-  - Collect Rewards : Grab coins, gems, or other items to increase your score.
-  - Avoid Obstacles : Dodge hazards like walls or barriers—collisions for game over.
+  - Collect Rewards : Grab coins, gems to increase your score.
+  - Avoid Obstacles : Dodge hazards like walls or barriers—collisions. Otherwise game over!
   - Reach Target Score : Earn enough points (e.g., 15) to unlock the Decision-Making Room.
   
   Decision-Making Room :
