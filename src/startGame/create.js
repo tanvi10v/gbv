@@ -2,19 +2,32 @@ import { fitBackground } from "../utils";
 import { textStyle } from "../constants.js";
 
 export const create = (instance, settings) => {
-    // Add the background
-    instance.bg = instance.add.image(0, 0, 'startBackground').setOrigin(0, 0);
-    fitBackground(instance, instance.bg); // Fit the background to the screen
-    instance.bg.setScrollFactor(0);
+  // Add the background
+  instance.bg = instance.add.image(0, 0, "startBackground").setOrigin(0, 0);
+  fitBackground(instance, instance.bg); // Fit the background to the screen
+  instance.bg.setScrollFactor(0);
 
-    // Add the title text
-    instance.add.text(settings.game.config.width / 2 - 80, settings.game.config.height / 2 - 200, 'See IT, Stop IT', textStyle).setOrigin(0, 0).setDepth(1);
+  const width = settings.game.config.width / 2;
+  const height = settings.game.config.height / 2;
+  // Add the title text
+  instance.add
+    .text(
+      width - 0.8 * width,
+      height - 0.2 * height,
+      "See IT, Stop IT",
+      textStyle
+    )
+    .setDepth(1);
 
-    instance.add.sprite(settings.game.config.width / 2, settings.game.config.height / 2, 'infoBoard').setScale(0.5).setOrigin(.3, .8);
+  instance.add.sprite(width, height, "infoBoard").setScale(0.5);
 
-    // Add the "Start Game" button
-    instance.startButton = instance.add.sprite(settings.game.config.width / 2, settings.game.config.height / 2, 'startButton').setScale(0.3).setOrigin(0, 2).setInteractive();
-    instance.startButton.on('pointerdown', () => {
-        instance.scene.start('MainGame'); // Transition to the main game scene
-    });
-}
+  // Add the "Start Game" button
+  instance.startButton = instance.add
+    .sprite(width - 0.1 * width, height, "startButton")
+    .setScale(0.3)
+    .setInteractive();
+
+  instance.startButton.on("pointerdown", () => {
+    instance.scene.start("MainGame"); // Transition to the main game scene
+  });
+};
