@@ -7,7 +7,7 @@ import { preloadAssets as preloadAssetsForStartGameScreen } from "./startGame/pr
 import { preloadAssets as preloadAssetsForHowToPlayScreen } from "./howToPlay/preloadAssets.js"; // Import the preload function
 import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
 import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
-import { create as createHowToPlayScreen } from "./HowToPlay/create.js"; // Import the create function
+import { create as createHowToPlayScreen } from "./howToPlay/create.js"; // Import the create function
 import { create as createStartGameScreen } from "./startGame/create.js"; // Import the create function
 import { create as createGameOverScreen } from "./gameOver/create.js"; // Import the create function
 import { update as updateMainGame } from "./mainGame/update.js";
