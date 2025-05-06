@@ -5,7 +5,7 @@ export const update = (instance, settings) => {
   const bg1 = settings.bg1; // Get the background layer
   const calloutBox = settings.calloutBox; // Get the callout box
   const calloutText = settings.calloutText; // Get the callout text
-  const bunny = settings.bunny; // Get the bunny sprite
+  const bird = settings.bird; // Get the bird sprite
   let gamePause = settings.gamePause; // Get the game pause state
   const reward = settings.reward; // Get the reward
   const keyEnter = settings.keyEnter; // Get the enter key
@@ -23,21 +23,21 @@ export const update = (instance, settings) => {
   if (bg1.tilePositionY >= settings.game.config.height)
     bg1.tilePositionY = -settings.game.config.height;
 
-  // Move the bunny with arrow keys
+  // Move the bird with arrow keys
   if (cursors.left.isDown) {
-    bunny.setVelocityX(-160);
+    bird.setVelocityX(-160);
   } else if (cursors.right.isDown) {
-    bunny.setVelocityX(160);
+    bird.setVelocityX(160);
   } else {
-    bunny.setVelocityX(0);
+    bird.setVelocityX(0);
   }
 
   if (cursors.up.isDown) {
-    bunny.setVelocityY(-160);
+    bird.setVelocityY(-160);
   } else if (cursors.down.isDown) {
-    bunny.setVelocityY(160);
+    bird.setVelocityY(160);
   } else {
-    bunny.setVelocityY(0);
+    bird.setVelocityY(0);
   }
 
   // Resume the game when SPACE is pressed
@@ -58,12 +58,12 @@ export const update = (instance, settings) => {
     }
   });
 
-  //Animate the bunny by changing the frame every 10 frames
-  settings.bunnyFrame += 0.1; // Increase the frame counter
-  if (settings.bunnyFrame >= settings.bunnyFrames.length) {
-    settings.bunnyFrame = 0;
+  //Animate the bird by changing the frame every 10 frames
+  settings.birdFrame += 0.1; // Increase the frame counter
+  if (settings.birdFrame >= settings.birdFrames.length) {
+    settings.birdFrame = 0;
   }
-  bunny.setTexture(settings.bunnyFrames[Math.floor(settings.bunnyFrame)]); // Change the bunny frame
+  bird.setTexture(settings.birdFrames[Math.floor(settings.birdFrame)]); // Change the bird frame
 
   if (settings.scoreText.text === "4") {
     showAlertBox(
