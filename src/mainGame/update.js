@@ -50,11 +50,13 @@ export const update = (instance, settings) => {
   }
   bird.setTexture(settings.birdFrames[Math.floor(settings.birdFrame)]); // Change the bird frame
 
-  if (settings.scoreText.text === "15") {
+  if (settings.scoreText.text === "10" && settings.level < 1) {
+    settings.level = 1;
     showAlertBox(
       instance,
       "Congratulations! You have reached to Level One. Time to take decision! Select Yes to Enter!",
       () => instance.scene.start("CantTalk"),
+      "Enter",
       null
     );
   }

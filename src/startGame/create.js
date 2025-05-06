@@ -10,15 +10,28 @@ export const create = (instance, settings) => {
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
 
+  const gameTitle = "SAFE-SPACE QUEST";
+  instance.add
+    .text(width, height - 100, gameTitle, {
+      fontFamily: "Cutive",
+      fontWeight: "100",
+      fontStyle: "normal",
+      fontSize: "30px",
+      color: "white",
+      align: "center",
+      wordWrap: { width: 300 },
+    })
+    .setOrigin(0.5, 0);
+
   // Add the "Start Game" button
   instance.startButton = instance.add
-    .sprite(width, height - 100, "startButton")
+    .sprite(width, height + 50, "startButton")
     .setScale(0.3)
     .setInteractive();
 
   // Add the "Start Game" button
   instance.howToPlayButton = instance.add
-    .sprite(width + 150 , height-250, "howToPlayButton")
+    .sprite(width + 150, height - 250, "howToPlayButton")
     .setScale(0.2)
     .setInteractive();
 

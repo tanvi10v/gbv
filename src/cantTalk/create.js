@@ -95,10 +95,11 @@ export const create = (instance, settings) => {
   instance.supportiveButton.on("pointerdown", () => {
     showAlertBox(
       instance,
-      "Yes you are correct and continue your game!!",
+      "Yes you are correct! \n Please continue your game!!",
       () => {
         instance.scene.start("MainGame");
       },
+      "Continue",
       null
     );
   });
@@ -106,8 +107,9 @@ export const create = (instance, settings) => {
   instance.unSupportiveButton.on("pointerdown", () => {
     showAlertBox(
       instance,
-      "Yes you are not correct! please try again and choose the correct option",
+      "Incorrect! Please try again.",
       null,
+      "Go Back",
       null
     );
   });

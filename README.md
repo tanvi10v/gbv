@@ -10,6 +10,10 @@ width of obsctacles and width of rewards random - Done
 game over different than CTA - Done
 game over to be more informative - Done
 score boarding - Done
+Title of the game - Done
+
+
+GBV Scenarios - Done
 
 
 
@@ -24,6 +28,5 @@ collision not detetcting - Later
 thumb touch auto - Later
 
 
-Title of the game
 
-GBV Scenarios
+

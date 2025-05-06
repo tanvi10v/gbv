@@ -6,7 +6,7 @@ export const score = (instance, settings) => {
     .setOrigin(0, 0);
 
   settings.scoreText = instance.add
-    .text(settings.game.config.width / 2 + 40, 10, "0", {
+    .text(settings.game.config.width / 2 + 40, 10, settings.scoreText.text || 0, {
       fontFamily: "Cutive",
       fontStyle: "bold",
       fontSize: "20px",

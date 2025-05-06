@@ -104,7 +104,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [CantTalk,StartGame, MainGame, HowToPlay], // Define multiple scenes
+  scene: [StartGame, MainGame, HowToPlay, CantTalk], // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
@@ -129,4 +129,5 @@ let gameSettings = {
   birdFrames: ["bird_ready", "bird_jump", "bird_stand"],
   obstacles: null,
   gameOver: false,
+  level:0
 };
