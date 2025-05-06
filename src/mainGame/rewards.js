@@ -1,16 +1,16 @@
 import { showCallout } from "./callout.js"; // Import the callout functions
 
 export const createrewards = (instance, settings) => {
-  const bird = settings.bird; // Get the bird sprite
+  const bunny = settings.bunny; // Get the bunny sprite
   const gameOver = settings.gameOver; // Get the game over state
 
   // Add a group of rewards
   const rewards = instance.physics.add.group();
   // Add collision detection between player and rewards
   instance.physics.add.collider(
-    bird,
+    bunny,
     rewards,
-    () => handleCollision(instance, bird, "Hurray!", settings),
+    () => handleCollision(instance, bunny, "Hurray!", settings),
     null,
     instance
   );

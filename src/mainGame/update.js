@@ -5,7 +5,7 @@ export const update = (instance, settings) => {
   const bg1 = settings.bg1; // Get the background layer
   const calloutBox = settings.calloutBox; // Get the callout box
   const calloutText = settings.calloutText; // Get the callout text
-  const bird = settings.bird; // Get the bird sprite
+  const bunny = settings.bunny; // Get the bunny sprite
   let gamePause = settings.gamePause; // Get the game pause state
   const reward = settings.reward; // Get the reward
   const keyEnter = settings.keyEnter; // Get the enter key
@@ -23,21 +23,21 @@ export const update = (instance, settings) => {
   if (bg1.tilePositionY >= settings.game.config.height)
     bg1.tilePositionY = -settings.game.config.height;
 
-  // Move the bird with arrow keys
+  // Move the bunny with arrow keys
   if (cursors.left.isDown) {
-    bird.setVelocityX(-160);
+    bunny.setVelocityX(-160);
   } else if (cursors.right.isDown) {
-    bird.setVelocityX(160);
+    bunny.setVelocityX(160);
   } else {
-    bird.setVelocityX(0);
+    bunny.setVelocityX(0);
   }
 
   if (cursors.up.isDown) {
-    bird.setVelocityY(-160);
+    bunny.setVelocityY(-160);
   } else if (cursors.down.isDown) {
-    bird.setVelocityY(160);
+    bunny.setVelocityY(160);
   } else {
-    bird.setVelocityY(0);
+    bunny.setVelocityY(0);
   }
 
   // Resume the game when SPACE is pressed
@@ -58,7 +58,12 @@ export const update = (instance, settings) => {
     }
   });
 
-  
+  //Animate the bunny by changing the frame every 10 frames
+  settings.bunnyFrame += 0.1; // Increase the frame counter
+  if (settings.bunnyFrame >= settings.bunnyFrames.length) {
+    settings.bunnyFrame = 0;
+  }
+  bunny.setTexture(settings.bunnyFrames[Math.floor(settings.bunnyFrame)]); // Change the bunny frame
 
   if (settings.scoreText.text === "4") {
     showAlertBox(
