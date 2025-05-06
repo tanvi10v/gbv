@@ -14,7 +14,7 @@ export const createObstacles = (instance, settings) => {
   );
   // Create onsctacles randomly every 5 seconds
   instance.time.addEvent({
-    delay: 5000,
+    delay: 7000,
     callback: () => {
       if (settings.gameOver) {
         return; // If the game is over, don't create more warning signs
@@ -41,7 +41,7 @@ export const createObstacles = (instance, settings) => {
           obstacleKey = "bomb";
           break;
       }
-      const x = Phaser.Math.Between(100, settings.game.config.width - 100); // Random x position
+      const x = Phaser.Math.Between(20, settings.game.config.width - 20); // Random x position
       //const y = Phaser.Math.Between(0, 0); // Random y position
       settings.obstacle = obstacles
         .create(x, 100, obstacleKey)
@@ -62,7 +62,51 @@ export const createObstacles = (instance, settings) => {
 };
 
 function handleCollision(instance, settings) {
+  settings.bird.stop();
+  settings.bird.setTint(0xff0000);
+
+  // Create a free-fall animation
+  instance.tweens.add({
+    targets: settings.bird,
+    y: settings.game.config.height + 10, // Fall off-screen
+    angle: 360, // Spin while falling
+    duration: 2000,
+    ease: "Linear",
+    onComplete: () => {
+      const gameOverText = `Game Over!!!`;
+      instance.add
+        .text(
+          settings.game.config.width / 2,
+          settings.game.config.height / 2 - 200,
+          gameOverText,
+          {
+            fontFamily: "Cutive",
+            fontWeight: "100",
+            fontStyle: "normal",
+            fontSize: "28px",
+            color: "#333333",
+            align: "left",
+            wordWrap: { width: 300 },
+          }
+        )
+        .setOrigin(0.5, 0)
+        .setDepth(2);
+
+      // Add the "Start Game" button
+      instance.restartButton = instance.add
+        .sprite(settings.game.config.width/2, settings.game.config.height/2 - 10, "restartButton")
+        .setScale(0.3)
+        .setInteractive().setDepth(2);
+
+      instance.restartButton.on("pointerdown", () => {
+        settings.gameOver = false; // Reset the game over flag
+        instance.scene.start("StartGame"); // Restart the game
+      });
+
+      settings.gameOver = true;
+    },
+  });
   // Handle game over logic
-  settings.gameOver = true;
-  instance.scene.start("GameOver"); // Transition to the Game Over scene
+
+  //instance.scene.start("GameOver"); // Transition to the Game Over scene
 }

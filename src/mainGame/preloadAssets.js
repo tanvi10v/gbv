@@ -6,7 +6,7 @@ export const preloadAssets = (instance) => {
   instance.load.image("diamond", "assets/coins/diamond.png");
   instance.load.image("jewel", "assets/coins/jewel.png");
   instance.load.image("star", "assets/coins/star.png");
-  instance.load.image("nut", "assets/obstacles/nut.png");
+  instance.load.image("nut", "assets/coins/nut.png");
 
   // Load the bird frames
   instance.load.image("bird_ready", "assets/character/bird_ready.png");
@@ -22,4 +22,7 @@ export const preloadAssets = (instance) => {
   instance.load.image("timeBombs", "assets/obstacles/timeBombs.png");
 
   instance.load.image("scoreBoard", "assets/score.png");
+
+  instance.load.image('restartButton', 'assets/playAgain.png'); // Button image
+    
 };

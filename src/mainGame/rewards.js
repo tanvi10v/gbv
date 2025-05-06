@@ -41,7 +41,7 @@ export const createrewards = (instance, settings) => {
           rewardKey = "star";
           break;
       }
-      const x = Phaser.Math.Between(100, settings.game.config.width - 50); // Random x position
+      const x = Phaser.Math.Between(50, settings.game.config.width - 50); // Random x position
       settings.reward = rewards
         .create(x, 100, rewardKey)
         .setDisplaySize(100, 100); // Create the reward

@@ -18,7 +18,7 @@ export const create = (instance, settings) => {
 
   // Add the "Start Game" button
   instance.howToPlayButton = instance.add
-    .sprite(width, height - 10, "howToPlayButton")
+    .sprite(width + 150 , height-250, "howToPlayButton")
     .setScale(0.2)
     .setInteractive();
 

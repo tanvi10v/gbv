@@ -21,7 +21,7 @@ export const create = (instance, settings) => {
   Gameplay:
   - Collect Rewards : Grab coins, gems, or other items to increase your score.
   - Avoid Obstacles : Dodge hazards like walls or barriers—collisions for game over.
-  - Reach Target Score : Earn enough points (e.g., 4) to unlock the Decision-Making Room.
+  - Reach Target Score : Earn enough points (e.g., 15) to unlock the Decision-Making Room.
   
   Decision-Making Room :
   - Choose wisely!! Your decisions affect outcomes and teach valuable lessons.

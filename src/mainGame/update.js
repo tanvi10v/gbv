@@ -12,6 +12,9 @@ export const update = (instance, settings) => {
   const cursors = settings.cursors; // Get the cursor keys
 
   if (settings.gameOver) {
+    settings.obstacle.destroy();
+    reward.destroy();
+    settings.bird.body.stop();
     // If the game hasn't started or is over, don't update the game
     return; // Don't update if the game hasn't started
   }
@@ -40,16 +43,6 @@ export const update = (instance, settings) => {
     bird.setVelocityY(0);
   }
 
-  // Global mouse click detection
-  instance.input.on("pointerdown", (pointer) => {
-    if (settings.gamePause) {
-      resumeGame(instance, settings); // Pause the game
-    }
-    if (settings.gameOver) {
-      restartGame(instance, settings); // Restart the game
-    }
-  });
-
   //Animate the bird by changing the frame every 10 frames
   settings.birdFrame += 0.1; // Increase the frame counter
   if (settings.birdFrame >= settings.birdFrames.length) {
@@ -57,7 +50,7 @@ export const update = (instance, settings) => {
   }
   bird.setTexture(settings.birdFrames[Math.floor(settings.birdFrame)]); // Change the bird frame
 
-  if (settings.scoreText.text === "4") {
+  if (settings.scoreText.text === "15") {
     showAlertBox(
       instance,
       "Congratulations! You have reached to Level One. Time to take decision! Select Yes to Enter!",

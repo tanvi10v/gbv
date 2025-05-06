@@ -2,14 +2,12 @@ import "./style.css";
 import Phaser from "phaser";
 import { preloadAssets as preloadAssetsForCantTalk } from "./cantTalk/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForMainGame } from "./mainGame/preloadAssets.js"; // Import the preload function
-import { preloadAssets as preloadAssetsForGameOver } from "./gameOver/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForStartGameScreen } from "./startGame/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForHowToPlayScreen } from "./howToPlay/preloadAssets.js"; // Import the preload function
 import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
 import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
 import { create as createHowToPlayScreen } from "./howToPlay/create.js"; // Import the create function
 import { create as createStartGameScreen } from "./startGame/create.js"; // Import the create function
-import { create as createGameOverScreen } from "./gameOver/create.js"; // Import the create function
 import { update as updateMainGame } from "./mainGame/update.js";
 
 // Start Screen Scene
@@ -75,21 +73,6 @@ class CantTalk extends Phaser.Scene {
 }
 
 // Define the Game Over Scene
-class GameOver extends Phaser.Scene {
-  constructor() {
-    super("GameOver"); // Key for this scene
-  }
-
-  preload() {
-    preloadAssetsForGameOver(this); // Preload assets using the imported function
-  }
-
-  create() {
-    createGameOverScreen(this, gameSettings); // Create the game over screen
-  }
-}
-
-// Define the Game Over Scene
 class HowToPlay extends Phaser.Scene {
   constructor() {
     super("HowToPlay"); // Key for this scene
@@ -121,7 +104,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [StartGame, MainGame, CantTalk, GameOver, HowToPlay], // Define multiple scenes
+  scene: [StartGame, MainGame, CantTalk, HowToPlay], // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
