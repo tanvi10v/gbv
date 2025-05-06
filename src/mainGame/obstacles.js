@@ -17,13 +17,13 @@ export const createObstacles = (instance, settings) => {
             let obstacleKey;
             switch (obstacleType) {
                 case 0:
-                    obstacleKey = 'flame';
+                    obstacleKey = 'nut';
                     break;
                 case 1:
-                    obstacleKey = 'lighting_blue';
+                    obstacleKey = 'spikeLog';
                     break;
                 case 2:
-                    obstacleKey = 'lighting_yellow';
+                    obstacleKey = 'stick';
                     break;
                 case 3:
                     obstacleKey = 'bomb';
