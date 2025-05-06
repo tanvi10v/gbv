@@ -1,11 +1,11 @@
 import { restartGame } from "./controller";
 
 export const createObstacles = (instance, settings) => {
-    const bunny = settings.bunny;
+    const bird = settings.bird;
     // Add a group of random obstacles
     let obstacles = instance.physics.add.group();
     // Add collision detection between player and obstacles
-    instance.physics.add.collider(bunny, obstacles, () => handleCollision(instance, settings), null, instance);
+    instance.physics.add.collider(bird, obstacles, () => handleCollision(instance, settings), null, instance);
     // Create onsctacles randomly every 5 seconds
     instance.time.addEvent({
         delay: 5000,

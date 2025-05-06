@@ -124,9 +124,7 @@ let gameSettings = {
   calloutText: null,
   calloutBox: null,
   reward: null,
-  bunny: null,
-  bunnyFrame: 0,
-  bunnyFrames: ['bunny1_ready', 'bunny1_jump', 'bunny1_stand'],
+  bird: null,
   obstacles: null,
   gameOver: false
 }
