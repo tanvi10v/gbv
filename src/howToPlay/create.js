@@ -12,32 +12,36 @@ export const create = (instance, settings) => {
 
   // Add instructions text
   const instructionsText = `
-  Welcome to the Game!
+
+  Collect rewards, avoid obstacles, and reach the target score to unlock the Decision-Making Room, where you'll face real-life OGBV scenarios.
   
   Controls:
-  - Use Arrow Keys to Move the bird
+  - Use Arrow Keys to Move
   
-  Objective:
-  - Collect items and reach the goal.
+  Gameplay:
+  - Collect Rewards : Grab coins, gems, or other items to increase your score.
+  - Avoid Obstacles : Dodge hazards like walls or barriers—collisions for game over.
+  - Reach Target Score : Earn enough points (e.g., 4) to unlock the Decision-Making Room.
   
-  Avoid obstacles and enemies to survive!
+  Decision-Making Room :
+  - Choose wisely!! Your decisions affect outcomes and teach valuable lessons.
 `;
 
   instance.add
-    .text(width, height - 200, instructionsText, {
+    .text(width, height - 300, instructionsText, {
       fontFamily: "Cutive",
       fontWeight: "100",
       fontStyle: "normal",
-      fontSize: "18px",
-      color: "white",
-      align: "center",
-      wordWrap: { width: 600 },
+      fontSize: "14px",
+      color: "#333333",
+      align: "left",
+      wordWrap: { width: 300 },
     })
     .setOrigin(0.5, 0);
 
   // Add the "Start Game" button
   instance.continueButton = instance.add
-    .sprite(width, height + 100, "continueButton")
+    .sprite(width, height + 250, "continueButton")
     .setScale(0.3)
     .setInteractive();
 

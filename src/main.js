@@ -121,7 +121,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [StartGame, MainGame, CantTalk, GameOver, HowToPlay], // Define multiple scenes
+  scene: [HowToPlay,StartGame, MainGame, CantTalk, GameOver], // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
