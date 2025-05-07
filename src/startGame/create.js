@@ -1,3 +1,4 @@
+import { contentStyle } from "../constants";
 import { fitBackground } from "../utils";
 export const create = (instance, settings) => {
   instance.bg = instance.add.image(0, 0, "background").setOrigin(0, 0);
@@ -7,15 +8,7 @@ export const create = (instance, settings) => {
   const height = settings.game.config.height / 2;
   const gameTitle = "SAFE-SPACE QUEST";
   instance.add
-    .text(width, height - 100, gameTitle, {
-      fontFamily: "Cutive",
-      fontWeight: "100",
-      fontStyle: "normal",
-      fontSize: "30px",
-      color: "white",
-      align: "center",
-      wordWrap: { width: 300 },
-    })
+    .text(width, height - 100, gameTitle, contentStyle)
     .setOrigin(0.5, 0);
   instance.startButton = instance.add
     .sprite(width, height + 50, "startButton")

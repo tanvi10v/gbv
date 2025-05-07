@@ -1,5 +1,6 @@
 import { fitBackground } from "../utils.js";
 import { showAlertBox } from "../showAlertBox.js";
+import { contentStyle} from "../constants.js";
 export const create = (instance, settings) => {
   instance.background = instance.add.image(0, 0, "background").setOrigin(0, 0);
   fitBackground(instance, instance.background); 
@@ -12,15 +13,7 @@ export const create = (instance, settings) => {
   anyone anymore."
 `;
   instance.add
-    .text(width, height - 230, scenarioText, {
-      fontFamily: "Cutive",
-      fontWeight: "100",
-      fontStyle: "normal",
-      fontSize: "14px",
-      color: "#333333",
-      align: "center",
-      wordWrap: { width: 300 },
-    })
+    .text(width, height - 230, scenarioText, contentStyle)
     .setOrigin(0.5, 0)
     .setDepth(1);
   instance.add
@@ -31,25 +24,12 @@ export const create = (instance, settings) => {
   const actionText = ` 
   What will you say? (Pick One)`;
   instance.add
-    .text(width, height - 100, actionText, {
-      fontFamily: "Cutive",
-      fontWeight: "100",
-      fontStyle: "normal",
-      fontSize: "14px",
-      color: "#333333",
-      align: "center",
-      wordWrap: { width: 300 },
-    })
+    .text(width, height - 100, actionText, contentStyle)
     .setOrigin(0.5, 0);
   const supportiveText = `That's tough. Do you want to talk about it?`;
   instance.add
     .text(20, height + 90, supportiveText, {
-      fontFamily: "Cutive",
-      fontWeight: "100",
-      fontStyle: "normal",
-      fontSize: "14px",
-      color: "#333333",
-      align: "center",
+      ...contentStyle,
       wordWrap: { width: 400 },
     })
     .setDepth(1);
@@ -60,12 +40,7 @@ export const create = (instance, settings) => {
   const unSupportiveText = `You're overreacting. It can't be that bad.`;
   instance.add
     .text(20, height + 150, unSupportiveText, {
-      fontFamily: "Cutive",
-      fontWeight: "100",
-      fontStyle: "normal",
-      fontSize: "14px",
-      color: "#333333",
-      align: "center",
+      ...contentStyle,
       wordWrap: { width: 400 },
     })
     .setDepth(1);

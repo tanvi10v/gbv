@@ -1,3 +1,5 @@
+import { contentStyle } from "../constants";
+
 export const createObstacles = (instance, settings) => {
   const bird = settings.bird;
   let obstacles = instance.physics.add.group();
@@ -70,13 +72,10 @@ function handleCollision(instance, settings) {
           settings.game.config.height / 2 - 200,
           gameOverText,
           {
-            fontFamily: "Cutive",
-            fontWeight: "100",
-            fontStyle: "normal",
+            ...contentStyle,
             fontSize: "28px",
-            color: "#333333",
             align: "left",
-            wordWrap: { width: 300 },
+            
           }
         )
         .setOrigin(0.5, 0)

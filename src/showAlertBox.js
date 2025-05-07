@@ -1,3 +1,5 @@
+import { contentStyle } from "./constants";
+
 /**
  * Displays a reusable alert box with "Yes" and "No" buttons.
  * @param {Phaser.Scene} scene - The current Phaser scene.
@@ -24,34 +26,25 @@ export function showAlertBox(scene, message, onYes, yesText) {
       scene.cameras.main.centerY,
       boxWidth,
       boxHeight,
-      0xE0F7FA
+      0xe0f7fa
     )
     .setStrokeStyle(2, 0x000000)
     .setOrigin(0.5, 0.5)
     .setDepth(1);
   const text = scene.add
     .text(box.x, box.y - 50, message, {
-      fontFamily: "Cutive",
-      fontWeight: "100",
-      fontStyle: "normal",
-      fontSize: "14px",
-      color: "#333333",
-      align: "center",
+      ...contentStyle,
       wordWrap: { width: boxWidth - 20 },
     })
     .setOrigin(0.5, 0.5)
     .setDepth(1);
   const yesButton = scene.add
-    .text(box.x , box.y + 50, yesText, {
-      fontFamily: "Cutive",
-      fontSize: "14px",
-      color: "#333333",
-    })
+    .text(box.x, box.y + 50, yesText, contentStyle)
     .setOrigin(0.5, 0.5)
     .setInteractive()
     .setDepth(1);
   yesButton.on("pointerdown", () => {
-    if (onYes) onYes(); 
+    if (onYes) onYes();
     cleanup();
   });
   function cleanup() {

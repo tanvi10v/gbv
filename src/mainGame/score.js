@@ -1,3 +1,5 @@
+import { contentStyle } from "../constants";
+
 export const score = (instance, settings) => {
   instance.add
     .sprite(settings.game.config.width / 3, 0, "scoreBoard")
@@ -9,7 +11,7 @@ export const score = (instance, settings) => {
       10,
       settings.level === 0 ? 0 : settings.scoreText.text,
       {
-        fontFamily: "Cutive",
+        ...contentStyle,
         fontStyle: "bold",
         fontSize: "20px",
         color: "#FFFFE0",
