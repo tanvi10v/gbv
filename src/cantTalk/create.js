@@ -3,9 +3,9 @@ import { textStyle } from "../constants.js";
 import { showAlertBox } from "../showAlertBox.js";
 export const create = (instance, settings) => {
   // Set background
-  instance.cantTalkBg = instance.add.image(0, 0, "cantTalkBg").setOrigin(0, 0);
-  fitBackground(instance, instance.cantTalkBg); // Fit the background to the screen
-  instance.cantTalkBg.setScrollFactor(0);
+  instance.background = instance.add.image(0, 0, "background").setOrigin(0, 0);
+  fitBackground(instance, instance.background); // Fit the background to the screen
+  instance.background.setScrollFactor(0);
 
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;

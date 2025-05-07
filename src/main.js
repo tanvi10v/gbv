@@ -1,10 +1,6 @@
 import "./style.css";
 import Phaser from "phaser";
-import { preloadAssets as preloadAssetsForCantTalk } from "./cantTalk/preloadAssets.js"; // Import the preload function
-import { preloadAssets as preloadAssetsForMainGame } from "./mainGame/preloadAssets.js"; // Import the preload function
-import { preloadAssets as preloadAssetsForStartGameScreen } from "./startGame/preloadAssets.js"; // Import the preload function
-import { preloadAssets as preloadAssetsForHowToPlayScreen } from "./howToPlay/preloadAssets.js"; // Import the preload function
-import { preloadAssets as preloadAssetsForRevengePornScreen } from "./revengePorn/preloadAssets.js"; // Import the preload function
+import { preloadAssets } from "./preloadAssets.js";
 import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
 import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
 import { create as createHowToPlayScreen } from "./howToPlay/create.js"; // Import the create function
@@ -19,7 +15,7 @@ class StartGame extends Phaser.Scene {
   }
 
   preload() {
-    preloadAssetsForStartGameScreen(this); // Preload assets using the imported function
+    preloadAssets(this); // Preload assets using the imported function
   }
 
   create() {
@@ -34,7 +30,7 @@ class MainGame extends Phaser.Scene {
   }
 
   preload() {
-    preloadAssetsForMainGame(this); // Preload assets using the imported function
+    preloadAssets(this); // Preload assets using the imported function
   }
 
   create() {
@@ -58,7 +54,7 @@ class CantTalk extends Phaser.Scene {
   }
 
   preload() {
-    preloadAssetsForCantTalk(this); // Preload assets using the imported function
+    preloadAssets(this); // Preload assets using the imported function
   }
 
   create() {
@@ -74,7 +70,7 @@ class RevengePorn extends Phaser.Scene {
   }
 
   preload() {
-    preloadAssetsForRevengePornScreen(this); // Preload assets using the imported function
+    preloadAssets(this); // Preload assets using the imported function
   }
 
   create() {
@@ -91,7 +87,7 @@ class HowToPlay extends Phaser.Scene {
   }
 
   preload() {
-    preloadAssetsForHowToPlayScreen(this); // Preload assets using the imported function
+    preloadAssets(this); // Preload assets using the imported function
   }
 
   create() {

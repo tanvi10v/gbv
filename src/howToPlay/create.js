@@ -3,7 +3,7 @@ import { textStyle } from "../constants.js";
 
 export const create = (instance, settings) => {
   // Add the background
-  instance.bg = instance.add.image(0, 0, "howToPlayBg").setOrigin(0, 0);
+  instance.bg = instance.add.image(0, 0, "background").setOrigin(0, 0);
   fitBackground(instance, instance.bg); // Fit the background to the screen
   instance.bg.setScrollFactor(0);
 

@@ -3,11 +3,11 @@ import { textStyle } from "../constants.js";
 import { showAlertBox } from "../showAlertBox.js";
 export const create = (instance, settings) => {
   // Set background
-  instance.revengePornBg = instance.add
-    .image(0, 0, "revengePornBg")
+  instance.background = instance.add
+    .image(0, 0, "background")
     .setOrigin(0, 0);
-  fitBackground(instance, instance.revengePornBg); // Fit the background to the screen
-  instance.revengePornBg.setScrollFactor(0);
+  fitBackground(instance, instance.background); // Fit the background to the screen
+  instance.background.setScrollFactor(0);
 
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
