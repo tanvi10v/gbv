@@ -1,45 +1,24 @@
 export const preloadAssets = (instance) => {
-  instance.load.image("background", "assets/startBg.png"); // Background image
-  
-  // Cant Talk
-  instance.load.image("choiceBoard", "assets/choice.png"); // Background image
-  instance.load.image("supportiveBtn", "assets/option.png"); // Button image
-  instance.load.image("unsupportiveBtn", "assets/option.png"); // Button image
-
-  // Revenge Porn
-  instance.load.image("choiceBoard", "assets/choice.png"); // Background image
-  instance.load.image("supportiveBtn", "assets/option.png"); // Button image
-  instance.load.image("unsupportiveBtn", "assets/option.png"); // Button image
-
-  // How to Play
-  instance.load.image("continueButton", "assets/continue.png"); // Button image
-
-  // Start Game
-  instance.load.image("startButton", "assets/play.png"); // Button image
-  instance.load.image("howToPlayButton", "assets/howToPlay.png"); // Button image
-
-  // Main
-  //BG
+  instance.load.image("background", "assets/startBg.png"); 
+  instance.load.image("choiceBoard", "assets/choice.png"); 
+  instance.load.image("supportiveBtn", "assets/option.png"); 
+  instance.load.image("unsupportiveBtn", "assets/option.png"); 
+  instance.load.image("continueButton", "assets/continue.png"); 
+  instance.load.image("startButton", "assets/play.png"); 
+  instance.load.image("howToPlayButton", "assets/howToPlay.png"); 
+  instance.load.image("restartButton", "assets/playAgain.png"); 
   instance.load.image("coin", "assets/coins/coin.png");
   instance.load.image("diamond", "assets/coins/diamond.png");
   instance.load.image("jewel", "assets/coins/jewel.png");
   instance.load.image("star", "assets/coins/star.png");
   instance.load.image("nut", "assets/coins/nut.png");
-
-  // Load the bird frames
   instance.load.image("bird_ready", "assets/character/bird_ready.png");
   instance.load.image("bird_stand", "assets/character/bird_stand.png");
   instance.load.image("bird_jump", "assets/character/bird_jump.png");
-
-  // Obstacles
-
   instance.load.image("spikeLog", "assets/obstacles/spikeLog.png");
   instance.load.image("stick", "assets/obstacles/stick.png");
   instance.load.image("bomb", "assets/obstacles/bomb.png");
   instance.load.image("skull", "assets/obstacles/skull.png");
   instance.load.image("timeBombs", "assets/obstacles/timeBombs.png");
-
-  instance.load.image("scoreBoard", "assets/score.png");
-
-  instance.load.image("restartButton", "assets/playAgain.png"); // Button image
+  instance.load.image("scoreBoard", "assets/score.png"); 
 };

@@ -1,10 +1,7 @@
 import { restartGame } from "./controller";
-
 export const createObstacles = (instance, settings) => {
   const bird = settings.bird;
-  // Add a group of random obstacles
   let obstacles = instance.physics.add.group();
-  // Add collision detection between player and obstacles
   instance.physics.add.collider(
     bird,
     obstacles,
@@ -12,14 +9,13 @@ export const createObstacles = (instance, settings) => {
     null,
     instance
   );
-  // Create onsctacles randomly every 5 seconds
   instance.time.addEvent({
     delay: 7000,
     callback: () => {
       if (settings.gameOver) {
-        return; // If the game is over, don't create more warning signs
+        return; 
       }
-      const obstacleType = Phaser.Math.Between(0, 5); // Randomly select an reward type
+      const obstacleType = Phaser.Math.Between(0, 5); 
       let obstacleKey;
       switch (obstacleType) {
         case 0:
@@ -41,14 +37,12 @@ export const createObstacles = (instance, settings) => {
           obstacleKey = "bomb";
           break;
       }
-      const x = Phaser.Math.Between(20, settings.game.config.width - 20); // Random x position
-      //const y = Phaser.Math.Between(0, 0); // Random y position
+      const x = Phaser.Math.Between(20, settings.game.config.width - 20); 
       settings.obstacle = obstacles
         .create(x, 100, obstacleKey)
-        .setDisplaySize(100, 100); // Create the reward
-      settings.obstacle.setVelocityY(300); // Set the velocity of the reward
-      settings.obstacle.setInteractive(); // Make the reward interactive
-      // Animate the glow
+        .setDisplaySize(100, 100); 
+      settings.obstacle.setVelocityY(300); 
+      settings.obstacle.setInteractive(); 
       instance.tweens.add({
         targets: settings.obstacle,
         alpha: 0.3,
@@ -60,16 +54,13 @@ export const createObstacles = (instance, settings) => {
     loop: true,
   });
 };
-
 function handleCollision(instance, settings) {
   settings.bird.stop();
   settings.bird.setTint(0xff0000);
-
-  // Create a free-fall animation
   instance.tweens.add({
     targets: settings.bird,
-    y: settings.game.config.height + 10, // Fall off-screen
-    angle: 360, // Spin while falling
+    y: settings.game.config.height + 10, 
+    angle: 360, 
     duration: 2000,
     ease: "Linear",
     onComplete: () => {
@@ -91,22 +82,15 @@ function handleCollision(instance, settings) {
         )
         .setOrigin(0.5, 0)
         .setDepth(2);
-
-      // Add the "Start Game" button
       instance.restartButton = instance.add
         .sprite(settings.game.config.width/2, settings.game.config.height/2 - 10, "restartButton")
         .setScale(0.3)
         .setInteractive().setDepth(2);
-
       instance.restartButton.on("pointerdown", () => {
-        settings.gameOver = false; // Reset the game over flag
-        instance.scene.start("StartGame"); // Restart the game
+        settings.gameOver = false; 
+        instance.scene.start("StartGame"); 
       });
-
       settings.gameOver = true;
     },
   });
-  // Handle game over logic
-
-  //instance.scene.start("GameOver"); // Transition to the Game Over scene
 }

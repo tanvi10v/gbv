@@ -23,7 +23,6 @@ export const textStyle = {
       y: 5
     },
     lineHeight: 2.5,
-    // backgroundColor: '#0000ff',
     baselineY: 'middle',
     testString: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
     fixedWidth: 300,

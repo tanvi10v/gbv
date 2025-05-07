@@ -2,21 +2,16 @@ import { fitBackground } from "../utils.js";
 import { textStyle } from "../constants.js";
 import { showAlertBox } from "../showAlertBox.js";
 export const create = (instance, settings) => {
-  // Set background
   instance.background = instance.add.image(0, 0, "background").setOrigin(0, 0);
-  fitBackground(instance, instance.background); // Fit the background to the screen
+  fitBackground(instance, instance.background); 
   instance.background.setScrollFactor(0);
-
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
-
   const scenarioText = `
   When your friend says, 
-
   "I feel like I can't talk to 
   anyone anymore."
 `;
-
   instance.add
     .text(width, height - 230, scenarioText, {
       fontFamily: "Cutive",
@@ -29,16 +24,13 @@ export const create = (instance, settings) => {
     })
     .setOrigin(0.5, 0)
     .setDepth(1);
-
   instance.add
     .sprite(width, height - 280, "choiceBoard")
     .setDisplaySize(350, 300)
     .setInteractive()
     .setOrigin(0.5, 0);
-
   const actionText = ` 
   What will you say? (Pick One)`;
-
   instance.add
     .text(width, height - 100, actionText, {
       fontFamily: "Cutive",
@@ -50,9 +42,7 @@ export const create = (instance, settings) => {
       wordWrap: { width: 300 },
     })
     .setOrigin(0.5, 0);
-
   const supportiveText = `That's tough. Do you want to talk about it?`;
-
   instance.add
     .text(20, height + 90, supportiveText, {
       fontFamily: "Cutive",
@@ -64,15 +54,11 @@ export const create = (instance, settings) => {
       wordWrap: { width: 400 },
     })
     .setDepth(1);
-
-  // Add the "Supportive" button
   instance.supportiveButton = instance.add
     .sprite(width, height + 100, "supportiveBtn")
     .setDisplaySize(400, 50)
     .setInteractive();
-
   const unSupportiveText = `You're overreacting. It can't be that bad.`;
-
   instance.add
     .text(20, height + 150, unSupportiveText, {
       fontFamily: "Cutive",
@@ -84,14 +70,10 @@ export const create = (instance, settings) => {
       wordWrap: { width: 400 },
     })
     .setDepth(1);
-
-  // Add the "UnSupportive" button
-
   instance.unSupportiveButton = instance.add
     .sprite(width, height + 160, "unsupportiveBtn")
     .setDisplaySize(400, 50)
     .setInteractive();
-
   instance.supportiveButton.on("pointerdown", () => {
     showAlertBox(
       instance,
@@ -103,7 +85,6 @@ export const create = (instance, settings) => {
       null
     );
   });
-
   instance.unSupportiveButton.on("pointerdown", () => {
     showAlertBox(
       instance,

@@ -3,10 +3,9 @@ export const resumeGame = (instance, settings) => {
     settings.gamePause = false;
     settings.reward.destroy();
     instance.physics.resume();
-    hideCallout(settings.calloutBox, settings.calloutText); // Hide the callout
+    hideCallout(settings.calloutBox, settings.calloutText); 
 }
-
 export const restartGame = (instance, settings) => {
-    settings.gameOver = false; // Reset the game over flag
-    instance.scene.restart(); // Restart the scene
+    settings.gameOver = false; 
+    instance.scene.restart(); 
 }

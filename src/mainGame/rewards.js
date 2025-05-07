@@ -1,10 +1,7 @@
 export const createrewards = (instance, settings) => {
-  const bird = settings.bird; // Get the bird sprite
-  const gameOver = settings.gameOver; // Get the game over state
-
-  // Add a group of rewards
+  const bird = settings.bird; 
+  const gameOver = settings.gameOver; 
   const rewards = instance.physics.add.group();
-  // Add collision detection between player and rewards
   instance.physics.add.collider(
     bird,
     rewards,
@@ -12,14 +9,13 @@ export const createrewards = (instance, settings) => {
     null,
     instance
   );
-  // Create rewards randomly every 5 seconds
   instance.time.addEvent({
-    delay: 5000, // 5 seconds
+    delay: 5000, 
     callback: () => {
       if (gameOver) {
-        return; // If the game is over, don't create more rewards
+        return; 
       }
-      const rewardType = Phaser.Math.Between(0, 5); // Randomly select an reward type
+      const rewardType = Phaser.Math.Between(0, 5); 
       let rewardKey;
       switch (rewardType) {
         case 0:
@@ -41,19 +37,18 @@ export const createrewards = (instance, settings) => {
           rewardKey = "star";
           break;
       }
-      const x = Phaser.Math.Between(50, settings.game.config.width - 50); // Random x position
+      const x = Phaser.Math.Between(50, settings.game.config.width - 50); 
       settings.reward = rewards
         .create(x, 100, rewardKey)
-        .setDisplaySize(100, 100); // Create the reward
-      settings.reward.setVelocityY(100); // Set the velocity of the reward
-      settings.reward.setInteractive(); // Make the reward interactive
+        .setDisplaySize(100, 100); 
+      settings.reward.setVelocityY(100); 
+      settings.reward.setInteractive(); 
     },
     loop: true,
   });
 };
-
 function handleCollision(instance, player, message, gameSettings) {
-  const scoreText = gameSettings.scoreText; // Get the score text
+  const scoreText = gameSettings.scoreText; 
   gameSettings.reward.destroy();
-  scoreText.setText(parseInt(scoreText.text) + 1); // Increment the score
+  scoreText.setText(parseInt(scoreText.text) + 1); 
 }

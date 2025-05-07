@@ -1,100 +1,73 @@
 import "./style.css";
 import Phaser from "phaser";
 import { preloadAssets } from "./preloadAssets.js";
-import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
-import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
-import { create as createHowToPlayScreen } from "./howToPlay/create.js"; // Import the create function
-import { create as createRevengePornScreen } from "./revengePorn/create.js"; // Import the create function
-import { create as createStartGameScreen } from "./startGame/create.js"; // Import the create function
+import { create as createCantTalk } from "./cantTalk/create.js";
+import { create as createMainGame } from "./mainGame/create.js";
+import { create as createHowToPlayScreen } from "./howToPlay/create.js";
+import { create as createRevengePornScreen } from "./revengePorn/create.js";
+import { create as createStartGameScreen } from "./startGame/create.js";
 import { update as updateMainGame } from "./mainGame/update.js";
-
-// Start Screen Scene
 class StartGame extends Phaser.Scene {
   constructor() {
     super("StartGame");
   }
-
   preload() {
-    preloadAssets(this); // Preload assets using the imported function
+    preloadAssets(this);
   }
-
   create() {
-    createStartGameScreen(this, gameSettings); // Create the start game screen using the imported function
+    createStartGameScreen(this, gameSettings);
   }
 }
-
-// Define the Main Game Scene
 class MainGame extends Phaser.Scene {
   constructor() {
-    super("MainGame"); // Key for this scene
+    super("MainGame"); 
   }
-
   preload() {
-    preloadAssets(this); // Preload assets using the imported function
+    preloadAssets(this); 
   }
-
   create() {
-    createMainGame(this, gameSettings); // Create the game using the imported function
-
-    // Enable cursor keys, including SPACE
+    createMainGame(this, gameSettings); 
     gameSettings.cursors = this.input.keyboard.createCursorKeys();
-    gameSettings.keyEnter = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.ENTER
-    );
   }
-
   update() {
-    updateMainGame(this, gameSettings); // Update the game using the imported function
+    updateMainGame(this, gameSettings); 
   }
 }
-
 class CantTalk extends Phaser.Scene {
   constructor() {
-    super("CantTalk"); // Key for this scene
+    super("CantTalk"); 
   }
-
   preload() {
-    preloadAssets(this); // Preload assets using the imported function
+    preloadAssets(this); 
   }
-
   create() {
-    createCantTalk(this, gameSettings); // Create the game using the imported function
+    createCantTalk(this, gameSettings); 
   }
-
   update() {}
 }
-
 class RevengePorn extends Phaser.Scene {
   constructor() {
-    super("RevengePorn"); // Key for this scene
+    super("RevengePorn"); 
   }
-
   preload() {
-    preloadAssets(this); // Preload assets using the imported function
+    preloadAssets(this); 
   }
-
   create() {
-    createRevengePornScreen(this, gameSettings); // Create the game using the imported function
+    createRevengePornScreen(this, gameSettings); 
   }
-
   update() {}
 }
-
-// Define the Game Over Scene
 class HowToPlay extends Phaser.Scene {
   constructor() {
-    super("HowToPlay"); // Key for this scene
+    super("HowToPlay"); 
   }
-
   preload() {
-    preloadAssets(this); // Preload assets using the imported function
+    preloadAssets(this); 
   }
-
   create() {
-    createHowToPlayScreen(this, gameSettings); // Create the game over screen
+    createHowToPlayScreen(this, gameSettings); 
   }
 }
-
 const config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -112,12 +85,9 @@ const config = {
       debug: false,
     },
   },
-  scene: [StartGame, MainGame, HowToPlay, CantTalk, RevengePorn], // Define multiple scenes
+  scene: [StartGame, MainGame, HowToPlay, CantTalk, RevengePorn], 
 };
-
 const game = new Phaser.Game(config);
-
-// Game settings object
 let gameSettings = {
   game: game,
   supportiveButton: null,

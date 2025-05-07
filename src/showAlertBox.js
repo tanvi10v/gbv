@@ -6,7 +6,6 @@
  * @param {function} onNo - Callback function when "No" is clicked.
  */
 export function showAlertBox(scene, message, onYes, yesText) {
-  // Create a semi-transparent background overlay
   const overlay = scene.add
     .rectangle(
       0,
@@ -17,8 +16,6 @@ export function showAlertBox(scene, message, onYes, yesText) {
       0.7
     )
     .setOrigin(0, 0);
-
-  // Create the alert box
   const boxWidth = 300;
   const boxHeight = 200;
   const box = scene.add
@@ -32,8 +29,6 @@ export function showAlertBox(scene, message, onYes, yesText) {
     .setStrokeStyle(2, 0x000000)
     .setOrigin(0.5, 0.5)
     .setDepth(1);
-
-  // Add the message text
   const text = scene.add
     .text(box.x, box.y - 50, message, {
       fontFamily: "Cutive",
@@ -46,8 +41,6 @@ export function showAlertBox(scene, message, onYes, yesText) {
     })
     .setOrigin(0.5, 0.5)
     .setDepth(1);
-
-  // Add "Yes" button
   const yesButton = scene.add
     .text(box.x , box.y + 50, yesText, {
       fontFamily: "Cutive",
@@ -57,15 +50,10 @@ export function showAlertBox(scene, message, onYes, yesText) {
     .setOrigin(0.5, 0.5)
     .setInteractive()
     .setDepth(1);
-
   yesButton.on("pointerdown", () => {
-    if (onYes) onYes(); // Call the "Yes" callback
+    if (onYes) onYes(); 
     cleanup();
   });
-
-  
-
-  // Cleanup function to remove the alert box
   function cleanup() {
     overlay.destroy();
     box.destroy();
