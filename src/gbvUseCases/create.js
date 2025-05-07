@@ -7,11 +7,7 @@ export const create = (instance, settings) => {
   instance.background.setScrollFactor(0);
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
-  const scenarioText = `
-  When your friend says, 
-  "I feel like I can't talk to 
-  anyone anymore."
-`;
+  const scenarioText = instance.scenarioText;
   instance.add
     .text(width, height - 230, scenarioText, contentStyle)
     .setOrigin(0.5, 0)
@@ -21,12 +17,11 @@ export const create = (instance, settings) => {
     .setDisplaySize(350, 300)
     .setInteractive()
     .setOrigin(0.5, 0);
-  const actionText = ` 
-  What will you say? (Pick One)`;
+  const actionText = instance.actionText;
   instance.add
     .text(width, height - 100, actionText, contentStyle)
     .setOrigin(0.5, 0);
-  const supportiveText = `That's tough. Do you want to talk about it?`;
+  const supportiveText = instance.supportiveText;
   instance.add
     .text(20, height + 90, supportiveText, {
       ...contentStyle,
@@ -37,7 +32,7 @@ export const create = (instance, settings) => {
     .sprite(width, height + 100, "supportiveBtn")
     .setDisplaySize(400, 50)
     .setInteractive();
-  const unSupportiveText = `You're overreacting. It can't be that bad.`;
+  const unSupportiveText = instance.unSupportiveText;
   instance.add
     .text(20, height + 150, unSupportiveText, {
       ...contentStyle,

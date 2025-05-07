@@ -1,11 +1,10 @@
 import "./style.css";
 import Phaser from "phaser";
 import { preloadAssets } from "./preloadAssets.js";
-import { create as createCantTalk } from "./cantTalk/create.js";
 import { create as createMainGame } from "./mainGame/create.js";
 import { create as createHowToPlayScreen } from "./howToPlay/create.js";
-import { create as createRevengePornScreen } from "./revengePorn/create.js";
 import { create as createStartGameScreen } from "./startGame/create.js";
+import { create as createGBVScreen } from "./gbvUseCases/create.js";
 import { update as updateMainGame } from "./mainGame/update.js";
 class StartGame extends Phaser.Scene {
   constructor() {
@@ -20,52 +19,48 @@ class StartGame extends Phaser.Scene {
 }
 class MainGame extends Phaser.Scene {
   constructor() {
-    super("MainGame"); 
+    super("MainGame");
   }
   preload() {
-    preloadAssets(this); 
+    preloadAssets(this);
   }
   create() {
-    createMainGame(this, gameSettings); 
+    createMainGame(this, gameSettings);
     gameSettings.cursors = this.input.keyboard.createCursorKeys();
   }
   update() {
-    updateMainGame(this, gameSettings); 
+    updateMainGame(this, gameSettings);
   }
 }
-class CantTalk extends Phaser.Scene {
+
+class GBVUseCases extends Phaser.Scene {
   constructor() {
-    super("CantTalk"); 
+    super("GBVUseCases");
+  }
+  init(data) {
+    this.level = data.level || 1; // Default level is 1 if not provided
+    this.scenarioText = data.scenarioText || "";
+    this.actionText = data.actionText || "";
+    this.supportiveText = data.supportiveText || "";
+    this.unSupportiveText = data.unSupportiveText || "";
   }
   preload() {
-    preloadAssets(this); 
+    preloadAssets(this);
   }
   create() {
-    createCantTalk(this, gameSettings); 
+    createGBVScreen(this, gameSettings);
   }
-  update() {}
 }
-class RevengePorn extends Phaser.Scene {
-  constructor() {
-    super("RevengePorn"); 
-  }
-  preload() {
-    preloadAssets(this); 
-  }
-  create() {
-    createRevengePornScreen(this, gameSettings); 
-  }
-  update() {}
-}
+
 class HowToPlay extends Phaser.Scene {
   constructor() {
-    super("HowToPlay"); 
+    super("HowToPlay");
   }
   preload() {
-    preloadAssets(this); 
+    preloadAssets(this);
   }
   create() {
-    createHowToPlayScreen(this, gameSettings); 
+    createHowToPlayScreen(this, gameSettings);
   }
 }
 const config = {
@@ -85,27 +80,15 @@ const config = {
       debug: false,
     },
   },
-  scene: [StartGame, MainGame, HowToPlay, CantTalk, RevengePorn], 
+  scene: [StartGame, MainGame, HowToPlay, GBVUseCases],
 };
 const game = new Phaser.Game(config);
 let gameSettings = {
   game: game,
-  supportiveButton: null,
-  UnSupportiveButton: null,
-  qBoard: null,
-  bg1: null,
   speed: 2,
-  cursors: null,
-  keyEnter: null,
-  gamePause: false,
   scoreText: 0,
-  calloutText: null,
-  calloutBox: null,
-  reward: null,
-  bird: null,
   birdFrame: 0,
   birdFrames: ["bird_ready", "bird_jump", "bird_stand"],
-  obstacles: null,
   gameOver: false,
   level: 0,
 };
