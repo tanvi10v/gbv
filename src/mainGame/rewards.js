@@ -19,7 +19,7 @@ export const createrewards = (instance, settings) => {
       if (gameOver) {
         return; // If the game is over, don't create more rewards
       }
-      const rewardType = Phaser.Math.Between(0, 2); // Randomly select an reward type
+      const rewardType = Phaser.Math.Between(0, 5); // Randomly select an reward type
       let rewardKey;
       switch (rewardType) {
         case 0:
