@@ -8,7 +8,7 @@ export const create = (instance, settings) => {
   const height = settings.game.config.height / 2;
   const gameTitle = "SAFE-SPACE QUEST";
   instance.add
-    .text(width, height - 100, gameTitle, contentStyle)
+    .text(width, height - 100, gameTitle, {...contentStyle, fontSize:"28px", color:"white"})
     .setOrigin(0.5, 0);
   instance.startButton = instance.add
     .sprite(width, height + 50, "startButton")

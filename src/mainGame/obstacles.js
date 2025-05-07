@@ -41,7 +41,7 @@ export const createObstacles = (instance, settings) => {
       const x = Phaser.Math.Between(20, settings.game.config.width - 20); 
       settings.obstacle = obstacles
         .create(x, 100, obstacleKey)
-        .setDisplaySize(100, 100); 
+        .setDisplaySize(100, 100).setDepth(1); 
       settings.obstacle.setVelocityY(300); 
       settings.obstacle.setInteractive(); 
       instance.tweens.add({
@@ -74,7 +74,7 @@ function handleCollision(instance, settings) {
           {
             ...contentStyle,
             fontSize: "28px",
-            align: "left",
+            align: "center",
             
           }
         )

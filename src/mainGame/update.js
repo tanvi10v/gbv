@@ -42,4 +42,10 @@ export const update = (instance, settings) => {
   if (settings.scoreText.text === "15" && settings.level === 2) {
     loadGBVUseCase(gbvCasesConfig[2], instance, settings);
   }
+  if (settings.scoreText.text === "20" && settings.level === 3) {
+    loadGBVUseCase(gbvCasesConfig[3], instance, settings);
+  }
+  if (settings.scoreText.text === "25" && settings.level === 4) {
+    loadGBVUseCase(gbvCasesConfig[4], instance, settings);
+  }
 };

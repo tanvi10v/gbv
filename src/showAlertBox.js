@@ -30,19 +30,19 @@ export function showAlertBox(scene, message, onYes, yesText) {
     )
     .setStrokeStyle(2, 0x000000)
     .setOrigin(0.5, 0.5)
-    .setDepth(1);
+    .setDepth(2);
   const text = scene.add
     .text(box.x, box.y - 50, message, {
       ...contentStyle,
       wordWrap: { width: boxWidth - 20 },
     })
     .setOrigin(0.5, 0.5)
-    .setDepth(1);
+    .setDepth(2);
   const yesButton = scene.add
     .text(box.x, box.y + 50, yesText, contentStyle)
     .setOrigin(0.5, 0.5)
     .setInteractive()
-    .setDepth(1);
+    .setDepth(2);
   yesButton.on("pointerdown", () => {
     if (onYes) onYes();
     cleanup();

@@ -12,8 +12,7 @@ export const score = (instance, settings) => {
       settings.level === 0 ? 0 : settings.scoreText.text,
       {
         ...contentStyle,
-        fontStyle: "bold",
-        fontSize: "20px",
+        fontSize: "23px",
         color: "#FFFFE0",
         align: "left",
       }
