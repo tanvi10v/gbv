@@ -1,5 +1,4 @@
 import { fitBackground } from "../utils.js";
-import { textStyle } from "../constants.js";
 export const create = (instance, settings) => {
   instance.bg = instance.add.image(0, 0, "background").setOrigin(0, 0);
   fitBackground(instance, instance.bg); 

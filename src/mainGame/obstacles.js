@@ -1,4 +1,3 @@
-import { restartGame } from "./controller";
 export const createObstacles = (instance, settings) => {
   const bird = settings.bird;
   let obstacles = instance.physics.add.group();

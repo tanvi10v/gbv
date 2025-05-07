@@ -1,4 +1,3 @@
-import { textStyle } from "../constants.js";
 export const score = (instance, settings) => {
   instance.add
     .sprite(settings.game.config.width / 3, 0, "scoreBoard")

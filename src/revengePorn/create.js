@@ -1,5 +1,4 @@
 import { fitBackground } from "../utils.js";
-import { textStyle } from "../constants.js";
 import { showAlertBox } from "../showAlertBox.js";
 export const create = (instance, settings) => {
   instance.background = instance.add

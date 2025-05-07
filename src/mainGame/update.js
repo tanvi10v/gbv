@@ -1,14 +1,8 @@
-import { hideCallout } from "./callout.js";
-import { resumeGame, restartGame } from "./controller.js";
 import { showAlertBox } from "../showAlertBox.js";
 export const update = (instance, settings) => {
   const bg1 = settings.bg1; 
-  const calloutBox = settings.calloutBox; 
-  const calloutText = settings.calloutText; 
   const bird = settings.bird; 
-  let gamePause = settings.gamePause; 
   const reward = settings.reward; 
-  const keyEnter = settings.keyEnter; 
   const cursors = settings.cursors; 
   if (settings.gameOver) {
     settings.obstacle.destroy();
