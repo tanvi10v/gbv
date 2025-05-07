@@ -1,4 +1,4 @@
-import { loadGBVUseCase } from "../loadGBVUseCase.js";
+import { loadGBVUseCase } from "../utils.js";
 import { gbvCasesConfig } from "../constants.js";
 export const update = (instance, settings) => {
   const bg1 = settings.bg1;
