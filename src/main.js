@@ -38,7 +38,7 @@ class GBVUseCases extends Phaser.Scene {
     super("GBVUseCases");
   }
   init(data) {
-    this.level = data.level || 1; // Default level is 1 if not provided
+    this.level = data.level || 0; // Default level is 1 if not provided
     this.scenarioText = data.scenarioText || "";
     this.actionText = data.actionText || "";
     this.supportiveText = data.supportiveText || "";

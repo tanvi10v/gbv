@@ -1,4 +1,5 @@
 import { loadGBVUseCase } from "../loadGBVUseCase.js";
+import { gbvCasesConfig } from "../constants.js";
 export const update = (instance, settings) => {
   const bg1 = settings.bg1;
   const bird = settings.bird;
@@ -32,38 +33,13 @@ export const update = (instance, settings) => {
     settings.birdFrame = 0;
   }
   bird.setTexture(settings.birdFrames[Math.floor(settings.birdFrame)]);
-  if (settings.scoreText.text === "1" && settings.level < 1) {
-    loadGBVUseCase(
-      1,
-      `
-  When your friend says, 
-  "I feel like I can't talk to 
-  anyone anymore."
-`,
-      ` 
-  What will you say? (Pick One)`,
-      `That's tough. Do you want to talk about it?`,
-      `You're overreacting. It can't be that bad.`,
-      instance,
-      settings
-    );
+  if (settings.scoreText.text === "5" && settings.level === 0) {
+    loadGBVUseCase(gbvCasesConfig[0], instance, settings);
   }
-  if (settings.scoreText.text === "2" && settings.level === 1) {
-    loadGBVUseCase(
-      2,
-      `
-  My ex shared intimate photos of me online without my consent. 
-  Now strangers are messaging me about them, and I feel humiliated. 
-`,
-      ` 
-  What should I do? (Pick One)`,
-      `Request the removal of the photos from the platform.`,
-      `Try to ignore the situation, hoping it will blow over.`,
-      instance,
-      settings
-    );
+  if (settings.scoreText.text === "10" && settings.level === 1) {
+    loadGBVUseCase(gbvCasesConfig[1], instance, settings);
   }
-  if (settings.scoreText.text === "3" && settings.level === 2) {
-    loadGBVUseCase(3, "Alice", "Alice", "Alice", "Alice", instance, settings);
+  if (settings.scoreText.text === "15" && settings.level === 2) {
+    loadGBVUseCase(gbvCasesConfig[2], instance, settings);
   }
 };
