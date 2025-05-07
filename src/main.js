@@ -4,9 +4,11 @@ import { preloadAssets as preloadAssetsForCantTalk } from "./cantTalk/preloadAss
 import { preloadAssets as preloadAssetsForMainGame } from "./mainGame/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForStartGameScreen } from "./startGame/preloadAssets.js"; // Import the preload function
 import { preloadAssets as preloadAssetsForHowToPlayScreen } from "./howToPlay/preloadAssets.js"; // Import the preload function
+import { preloadAssets as preloadAssetsForRevengePornScreen } from "./revengePorn/preloadAssets.js"; // Import the preload function
 import { create as createCantTalk } from "./cantTalk/create.js"; // Import the create function
 import { create as createMainGame } from "./mainGame/create.js"; // Import the create function
 import { create as createHowToPlayScreen } from "./howToPlay/create.js"; // Import the create function
+import { create as createRevengePornScreen } from "./revengePorn/create.js"; // Import the create function
 import { create as createStartGameScreen } from "./startGame/create.js"; // Import the create function
 import { update as updateMainGame } from "./mainGame/update.js";
 
@@ -61,15 +63,25 @@ class CantTalk extends Phaser.Scene {
 
   create() {
     createCantTalk(this, gameSettings); // Create the game using the imported function
-
-    // // Enable cursor keys, including SPACE
-    // gameSettings.cursors = this.input.keyboard.createCursorKeys();
-    // gameSettings.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
   }
 
-  update() {
-    //updateMainGame(this, gameSettings); // Update the game using the imported function
+  update() {}
+}
+
+class RevengePorn extends Phaser.Scene {
+  constructor() {
+    super("RevengePorn"); // Key for this scene
   }
+
+  preload() {
+    preloadAssetsForRevengePornScreen(this); // Preload assets using the imported function
+  }
+
+  create() {
+    createRevengePornScreen(this, gameSettings); // Create the game using the imported function
+  }
+
+  update() {}
 }
 
 // Define the Game Over Scene
@@ -104,7 +116,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [StartGame, MainGame, HowToPlay, CantTalk], // Define multiple scenes
+  scene: [StartGame, MainGame, HowToPlay, CantTalk, RevengePorn], // Define multiple scenes
 };
 
 const game = new Phaser.Game(config);
@@ -129,5 +141,5 @@ let gameSettings = {
   birdFrames: ["bird_ready", "bird_jump", "bird_stand"],
   obstacles: null,
   gameOver: false,
-  level:0
+  level: 0,
 };
