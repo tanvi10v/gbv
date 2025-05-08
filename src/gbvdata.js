@@ -1,4 +1,4 @@
-async function classifyData() {
+export async function classifyData() {
   const url = "https://gbv-ai-api.vercel.app/api/classify";
 
   const data = {
