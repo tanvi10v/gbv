@@ -41,7 +41,7 @@ export const createrewards = (instance, settings) => {
       settings.reward = rewards
         .create(x, 100, rewardKey)
         .setDisplaySize(100, 100).setDepth(1); 
-      settings.reward.setVelocityY(100); 
+      settings.reward.setVelocityY(250); 
       settings.reward.setInteractive(); 
     },
     loop: true,

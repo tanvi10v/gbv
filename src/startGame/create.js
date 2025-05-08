@@ -1,15 +1,17 @@
-import { contentStyle } from "../constants";
 import { fitBackground } from "../utils";
 export const create = (instance, settings) => {
-  instance.bg = instance.add.image(0, 0, "background").setOrigin(0, 0);
-  fitBackground(instance, instance.bg); 
+  const config = settings.game.config;
+  instance.bg = instance.add.tileSprite(0, 0, config.width, config.height,"background").setOrigin(0, 0);
+  fitBackground(instance, instance.bg);
   instance.bg.setScrollFactor(0);
   const width = settings.game.config.width / 2;
   const height = settings.game.config.height / 2;
-  const gameTitle = "SAFE-SPACE QUEST";
+
   instance.add
-    .text(width, height - 100, gameTitle, {...contentStyle, fontSize:"28px", color:"white"})
+    .sprite(width, height - 250, "gameName")
+    .setScale(.3)
     .setOrigin(0.5, 0);
+
   instance.startButton = instance.add
     .sprite(width, height + 50, "startButton")
     .setScale(0.3)
@@ -19,9 +21,9 @@ export const create = (instance, settings) => {
     .setScale(0.2)
     .setInteractive();
   instance.startButton.on("pointerdown", () => {
-    instance.scene.start("MainGame"); 
+    instance.scene.start("MainGame");
   });
   instance.howToPlayButton.on("pointerdown", () => {
-    instance.scene.start("HowToPlay"); 
+    instance.scene.start("HowToPlay");
   });
 };

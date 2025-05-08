@@ -3,7 +3,7 @@ export async function classifyData() {
 
   const data = {
     count: 5,
-    categories: ["workplace harassment", "bystander intervention","digital abuse", "intimate partner violence"],
+    categories: ["digital abuse"],
   };
   try {
     const response = await fetch(url, {

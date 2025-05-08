@@ -1,5 +1,6 @@
 export const preloadAssets = (instance) => {
   instance.load.image("background", "assets/startBg.png"); 
+  instance.load.image("gameName", "assets/gameName.png"); 
   instance.load.image("choiceBoard", "assets/choice.png"); 
   instance.load.image("supportiveBtn", "assets/option.png"); 
   instance.load.image("unsupportiveBtn", "assets/option.png"); 
