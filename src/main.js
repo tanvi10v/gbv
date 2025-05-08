@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.css?url";
 import Phaser from "phaser";
 import { preloadAssets } from "./preloadAssets.js";
 import { create as createMainGame } from "./mainGame/create.js";
