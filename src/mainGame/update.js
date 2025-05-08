@@ -1,5 +1,4 @@
 import { loadGBVUseCase } from "../utils.js";
-import { gbvCasesConfig } from "../constants.js";
 export const update = (instance, settings) => {
   const bg1 = settings.bg1;
   const bird = settings.bird;
@@ -33,6 +32,7 @@ export const update = (instance, settings) => {
     settings.birdFrame = 0;
   }
   bird.setTexture(settings.birdFrames[Math.floor(settings.birdFrame)]);
+  const gbvCasesConfig = settings.gbvCasesConfig;
   if (settings.scoreText.text === "5" && settings.level === 0) {
     loadGBVUseCase(gbvCasesConfig[0], instance, settings);
   }
