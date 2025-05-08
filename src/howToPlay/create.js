@@ -1,7 +1,8 @@
 import { contentStyle } from "../constants.js";
 import { fitBackground } from "../utils.js";
 export const create = (instance, settings) => {
-  instance.bg = instance.add.image(0, 0, "background").setOrigin(0, 0);
+  const config = settings.game.config;
+  instance.bg = instance.add.tileSprite(0, 0, config.width, config.height,"background").setOrigin(0, 0);
   fitBackground(instance, instance.bg); 
   instance.bg.setScrollFactor(0);
   const width = settings.game.config.width / 2;
