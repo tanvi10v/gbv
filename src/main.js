@@ -94,5 +94,5 @@ let gameSettings = {
   level: 0,
   gbvCasesConfig: [],
 };
-gameSettings.gbvCasesConfig = await classifyData(gameSettings.gbvCasesConfig);
+classifyData(gameSettings.gbvCasesConfig);
 
