@@ -32,7 +32,7 @@ export const update = (instance, settings) => {
     settings.birdFrame = 0;
   }
   bird.setTexture(settings.birdFrames[Math.floor(settings.birdFrame)]);
-  const gbvCasesConfig = settings.gbvCasesConfig;
+  const gbvCasesConfig = window.gbvCasesConfig;
   if (settings.scoreText.text === "5" && settings.level === 0) {
     loadGBVUseCase(gbvCasesConfig[0], instance, settings);
   }

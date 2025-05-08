@@ -6,7 +6,6 @@ import { create as createHowToPlayScreen } from "./howToPlay/create.js";
 import { create as createStartGameScreen } from "./startGame/create.js";
 import { create as createGBVScreen } from "./gbvUseCases/create.js";
 import { update as updateMainGame } from "./mainGame/update.js";
-import { classifyData } from "./gbvdata.js";
 class StartGame extends Phaser.Scene {
   constructor() {
     super("StartGame");
@@ -91,8 +90,6 @@ let gameSettings = {
   birdFrame: 0,
   birdFrames: ["bird_ready", "bird_jump", "bird_stand"],
   gameOver: false,
-  level: 0,
-  gbvCasesConfig: [],
+  level: 0
 };
-classifyData(gameSettings.gbvCasesConfig);
 
