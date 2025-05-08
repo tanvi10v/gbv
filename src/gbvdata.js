@@ -17,11 +17,9 @@ export async function classifyData() {
       throw new Error("Network response was not ok");
     }
     window.gbvCasesConfig = await response.json();
-    const script = document.createElement("script");
-    script.src = "src/main.js";
-    script.type = "module";
-    script.defer = true;
-    document.head.appendChild(script);
+    // Load Phaser game via the wrapper
+    const { loadPhaserGame } = await import("./loadGame.js");
+    loadPhaserGame();
   } catch (error) {
     console.error("Error:", error);
   }
