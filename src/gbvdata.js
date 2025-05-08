@@ -18,7 +18,7 @@ export async function classifyData() {
     }
     window.gbvCasesConfig = await response.json();
     // Load Phaser game via the wrapper
-    const { loadPhaserGame } = await import("./loadGame.js");
+    const { loadPhaserGame } = await import("./main.js");
     loadPhaserGame();
   } catch (error) {
     console.error("Error:", error);
