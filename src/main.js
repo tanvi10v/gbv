@@ -7,6 +7,7 @@ import { create as createGBVScreen } from "./gbvUseCases/create.js";
 import { update as updateMainGame } from "./mainGame/update.js";
 
 export async function loadPhaserGame() {
+  // Scene for the initial start screen of the game
   class StartGame extends Phaser.Scene {
     constructor() {
       super("StartGame");
@@ -18,6 +19,7 @@ export async function loadPhaserGame() {
       createStartGameScreen(this, gameSettings);
     }
   }
+  // Scene for the main gameplay
   class MainGame extends Phaser.Scene {
     constructor() {
       super("MainGame");
@@ -34,6 +36,7 @@ export async function loadPhaserGame() {
     }
   }
 
+  // Scene for displaying and interacting with GBV (Gender-Based Violence) use case scenarios
   class GBVUseCases extends Phaser.Scene {
     constructor() {
       super("GBVUseCases");
@@ -53,6 +56,7 @@ export async function loadPhaserGame() {
     }
   }
 
+  // Scene for displaying instructions on how to play the game
   class HowToPlay extends Phaser.Scene {
     constructor() {
       super("HowToPlay");
@@ -64,33 +68,37 @@ export async function loadPhaserGame() {
       createHowToPlayScreen(this, gameSettings);
     }
   }
+  // Phaser game configuration object
   const config = {
-    type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    type: Phaser.AUTO, // Automatically detect the renderer (WebGL or Canvas)
+    width: window.innerWidth, // Set game width to browser window width
+    height: window.innerHeight, // Set game height to browser window height
     scale: {
-      mode: Phaser.Scale.FIT,
-      autoCenter: Phaser.Scale.CENTER_BOTH,
+      mode: Phaser.Scale.FIT, // Scale the game to fit within the browser window
+      autoCenter: Phaser.Scale.CENTER_BOTH, // Center the game canvas horizontally and vertically
       width: window.innerWidth,
       height: window.innerHeight,
     },
     physics: {
-      default: "arcade",
+      default: "arcade", // Use Arcade Physics engine
       arcade: {
-        gravity: { y: 0 },
-        debug: false,
+        gravity: { y: 0 }, // No global gravity
+        debug: false, // Disable physics debugging visuals
       },
     },
+    // List of scenes to be included in the game
     scene: [StartGame, MainGame, HowToPlay, GBVUseCases],
   };
-  const game = new Phaser.Game(config);
+  const game = new Phaser.Game(config); // Initialize the Phaser game instance
+
+  // Global game settings object, shared across scenes
   let gameSettings = {
-    game: game,
-    speed: 2,
-    scoreText: 0,
-    birdFrame: 0,
-    birdFrames: ["bird_ready", "bird_jump", "bird_stand"],
-    gameOver: false,
-    level: 0,
+    game: game, // Reference to the Phaser game instance
+    speed: 2, // Initial game speed (e.g., for background scrolling)
+    scoreText: 0, // Stores the player's current score, typically a Phaser Text object or its value
+    birdFrame: 0, // Current animation frame index for the bird character
+    birdFrames: ["bird_ready", "bird_jump", "bird_stand"], // Array of frame names for bird animation
+    gameOver: false, // Flag to indicate if the game is over
+    level: 0, // Current game level, used for GBV scenario progression (0-indexed)
   };
 }

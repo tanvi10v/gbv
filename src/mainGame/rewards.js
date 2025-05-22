@@ -39,7 +39,7 @@ export const createrewards = (instance, settings) => {
       }
       const x = Phaser.Math.Between(50, settings.game.config.width - 50); 
       settings.reward = rewards
-        .create(x, 100, rewardKey)
+        .create(x, 100, 'collectables_atlas', rewardKey)
         .setDisplaySize(100, 100).setDepth(1); 
       settings.reward.setVelocityY(250); 
       settings.reward.setInteractive(); 

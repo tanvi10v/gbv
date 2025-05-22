@@ -30,7 +30,7 @@ export const create = (instance, settings) => {
     .text(width, height - 300, instructionsText, {...contentStyle, fontSize:'15px', fontWeight:"100", align:'justify'})
     .setOrigin(0.5, 0);
   instance.continueButton = instance.add
-    .sprite(width, height + 250, "continueButton")
+    .sprite(width, height + 250, 'ui_buttons_atlas', 'continueButton')
     .setScale(0.3)
     .setInteractive();
   instance.continueButton.on("pointerdown", () => {

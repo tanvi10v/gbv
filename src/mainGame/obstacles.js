@@ -40,7 +40,7 @@ export const createObstacles = (instance, settings) => {
       }
       const x = Phaser.Math.Between(20, settings.game.config.width - 20); 
       settings.obstacle = obstacles
-        .create(x, 100, obstacleKey)
+        .create(x, 100, 'obstacles_atlas', obstacleKey)
         .setDisplaySize(100, 100).setDepth(1); 
       settings.obstacle.setVelocityY(300); 
       settings.obstacle.setInteractive(); 
@@ -81,7 +81,7 @@ function handleCollision(instance, settings) {
         .setOrigin(0.5, 0)
         .setDepth(2);
       instance.restartButton = instance.add
-        .sprite(settings.game.config.width/2, settings.game.config.height/2 - 10, "restartButton")
+        .sprite(settings.game.config.width/2, settings.game.config.height/2 - 10, 'ui_buttons_atlas', 'restartButton')
         .setScale(0.3)
         .setInteractive().setDepth(2);
       instance.restartButton.on("pointerdown", () => {

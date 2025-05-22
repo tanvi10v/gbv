@@ -1,0 +1,15 @@
+{
+    "frames": {
+        "bomb": { "frame": { "x": 0, "y": 0, "w": 32, "h": 32 }, "sourceSize": { "w": 32, "h": 32 } },
+        "skull": { "frame": { "x": 32, "y": 0, "w": 32, "h": 32 }, "sourceSize": { "w": 32, "h": 32 } },
+        "spikeLog": { "frame": { "x": 64, "y": 0, "w": 32, "h": 32 }, "sourceSize": { "w": 32, "h": 32 } },
+        "stick": { "frame": { "x": 96, "y": 0, "w": 32, "h": 32 }, "sourceSize": { "w": 32, "h": 32 } },
+        "timeBombs": { "frame": { "x": 128, "y": 0, "w": 32, "h": 32 }, "sourceSize": { "w": 32, "h": 32 } }
+    },
+    "meta": {
+        "image": "public/assets/obstacles_atlas.png",
+        "format": "RGBA8888",
+        "size": { "w": 160, "h": 32 },
+        "scale": "1"
+    }
+}

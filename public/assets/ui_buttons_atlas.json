@@ -1,0 +1,14 @@
+{
+    "frames": {
+        "startButton": { "frame": { "x": 0, "y": 0, "w": 100, "h": 50 }, "sourceSize": { "w": 100, "h": 50 } },
+        "howToPlayButton": { "frame": { "x": 100, "y": 0, "w": 100, "h": 50 }, "sourceSize": { "w": 100, "h": 50 } },
+        "restartButton": { "frame": { "x": 200, "y": 0, "w": 100, "h": 50 }, "sourceSize": { "w": 100, "h": 50 } },
+        "continueButton": { "frame": { "x": 300, "y": 0, "w": 100, "h": 50 }, "sourceSize": { "w": 100, "h": 50 } }
+    },
+    "meta": {
+        "image": "public/assets/ui_buttons_atlas.png",
+        "format": "RGBA8888",
+        "size": { "w": 400, "h": 50 },
+        "scale": "1"
+    }
+}

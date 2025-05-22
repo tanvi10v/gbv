@@ -13,11 +13,11 @@ export const create = (instance, settings) => {
     .setOrigin(0.5, 0);
 
   instance.startButton = instance.add
-    .sprite(width, height + 50, "startButton")
+    .sprite(width, height + 50, 'ui_buttons_atlas', 'startButton')
     .setScale(0.3)
     .setInteractive();
   instance.howToPlayButton = instance.add
-    .sprite(width + 150, height - 250, "howToPlayButton")
+    .sprite(width + 150, height - 250, 'ui_buttons_atlas', 'howToPlayButton')
     .setScale(0.2)
     .setInteractive();
   instance.startButton.on("pointerdown", () => {
